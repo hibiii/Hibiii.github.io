@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ page.title }} - Hibi's Retreat</title>
+		<meta charset="utf-8">
+		<meta name="title" content="{{ page.title }}">
+		{% if page.description %}
+		<meta name="description" content="{{ page.description }}">
+		{% endif %}
+		{% if page.uses_mono %}
+		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=DM+Sans:ital@0;1&display=swap" rel="stylesheet"> 
+		{% else %}
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital@0;1&display=swap" rel="stylesheet">
+		{% endif %}
+	</head>
+	<body>
+		<main>
+			<h1>{{ page.title }}</h1>
+			{{ content }}
+		</main>
+		<nav></nav>
+	</body>
+</html>
