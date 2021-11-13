@@ -2,8 +2,10 @@ body {
 	font-family: 'DM Sans', sans-serif;
 	max-width: 800px;
 	margin: auto;
-	margin-bottom: 10em;
 	overflow-y: scroll;
+}
+main {
+	margin-bottom: 5em;
 }
 a {
 	color: unset;
