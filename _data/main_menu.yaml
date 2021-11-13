@@ -1,8 +1,0 @@
-menu_title: Hibi's Retreat
-pages:
-
-- title: Top
-  url: "/"
-
-- title: Test
-  test: "/test.html"

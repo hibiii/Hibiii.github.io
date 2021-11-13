@@ -2,19 +2,35 @@ body {
 	font-family: 'DM Sans', sans-serif;
 	max-width: 800px;
 	margin: auto;
+	margin-bottom: 10em;
 	overflow-y: scroll;
 }
 a {
-	color: purple;
+	color: unset;
+}
+h1 {
+	margin-bottom: 0;
+}
+.hicon {
+	float: left;
+	margin: 8px;
+}
+img.scrot.big {
+	max-width: 100%;
+	max-height: 100%;
+}
+mark.note {
+	display: block;
+	background-color: khaki;
+	padding: 10px;
+}
+footer {
+	border-top: 1px solid black;
+	padding: 0.2em;
 }
 
-@media only screen and (min-width: 500px) {
-	nav {
-		float: left;
-		width: 140px;
-		height: 100%
-	}
-	main {
-		margin: 50px 0 120px 160px;
+@media only screen and (max-width:795px) {
+	body {
+		padding: 5px;
 	}
 }
