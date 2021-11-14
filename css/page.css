@@ -21,6 +21,9 @@ img.scrot.big {
 	max-width: 100%;
 	max-height: 100%;
 }
+div.center {
+	text-align: center;
+}
 mark.note {
 	display: block;
 	background-color: khaki;
