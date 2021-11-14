@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<rect width="16" height="16" fill="#d8643d"/>
+	<polyline points="8,2 9,2 9,3 12,3 12,4 5,4 5,3 8,3" fill="white"/>
+	<rect x="6" y="5" width="1" height="9" fill="white"/>
+	<rect x="8" y="5" width="1" height="7" fill="white"/>
+	<rect x="10" y="5" width="1" height="5" fill="white"/>
+</svg>
