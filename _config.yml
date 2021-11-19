@@ -1,0 +1,16 @@
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "page"
+      section: "Hibi's Retreat"
+      icon: "/art/kbwrior.png"
+      color: "#808080"
+  -
+    scope:
+      path: "mods"
+    values:
+      layout: "mod"
+      section: "Hibi's Mods"
+      color: "#FF00FF"
