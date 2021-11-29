@@ -5,7 +5,7 @@ defaults:
     values:
       layout: "page"
       section: "Hibi's Retreat"
-      icon: "/art/kbwrior.png"
+      icon: "/assets/art/kbwrior.png"
       color: "#808080"
   -
     scope:
