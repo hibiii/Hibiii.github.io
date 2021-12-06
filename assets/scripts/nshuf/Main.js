@@ -23,6 +23,7 @@ function generate() {
 		if(tfOutput === null) return;
 		outputs = outputs.concat([tfOutput]).flat();
 	});
+	outputs = outputs.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
 	outputs.forEach(ign => {
 		let li = document.createElement("li");
 		li.innerText = ign;
