@@ -17,13 +17,22 @@ function generate() {
 	results.innerHTML = "";
 	let input = document.getElementById("ign").value;
 	let outputs = [ input ];
-	transformers.forEach(tf => {
-		if(!document.getElementById(tf.meta.toggle).checked) return;
-		let tfOutput = tf.transform(input);
-		if(tfOutput === null) return;
-		outputs = outputs.concat([tfOutput]).flat();
-	});
-	outputs = outputs.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+	let hasTransforms = true;
+	do {
+		let oldOutputs = outputs;
+		oldOutputs.sort();
+		outputs.forEach(ign => {
+			transformers.forEach(tf => {
+				if(!document.getElementById(tf.meta.toggle).checked) return;
+				let tfOutput = tf.transform(ign);
+				if(tfOutput === null) return;
+				outputs = outputs.concat([tfOutput]).flat();
+			});
+		});
+		outputs = outputs.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+		outputs.sort();
+		if(JSON.stringify(oldOutputs) == JSON.stringify(outputs)) hasTransforms = false;
+	} while(hasTransforms);
 	outputs.forEach(ign => {
 		let li = document.createElement("li");
 		li.innerText = ign;
