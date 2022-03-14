@@ -1,8 +1,14 @@
 body {
-	font-family: 'DM Sans', sans-serif;
+	font-family: "Gravity", "Helvetica", "Noto Sans", "Arial", sans-serif;
 	max-width: 800px;
 	margin: auto;
 	overflow-y: scroll;
+}
+.curs {
+	font-family: "Chilanka", "Comic Neue", "Comic Sans", cursive;
+}
+code, pre {
+	font-family: "Inconsolata", "Lucida Console", monospace;
 }
 main {
 	margin-bottom: 5em;
@@ -10,8 +16,11 @@ main {
 a {
 	color: unset;
 }
-h1 {
+h1, h2 {
 	margin-bottom: 0;
+}
+h1, h2, h3 {
+	clear: both;
 }
 .hicon {
 	float: left;
@@ -20,6 +29,15 @@ h1 {
 img.scrot.big {
 	max-width: 100%;
 	max-height: 100%;
+}
+img.small {
+	max-width: 25%;
+}
+img:not(.big):not(.small) {
+	max-width: 50%;
+}
+img {
+	margin: 20px;
 }
 div.center {
 	text-align: center;
@@ -33,6 +51,8 @@ footer {
 	border-top: 1px solid black;
 	padding: 0.2em;
 }
+.fr { float: right; }
+.fl { float: left; }
 
 @media only screen and (max-width:795px) {
 	body {
@@ -50,5 +70,8 @@ footer {
 	}
 	footer {
 		border-color: white;
+	}
+	img.invertible {
+		filter: invert();
 	}
 }

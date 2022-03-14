@@ -1,0 +1,33 @@
+/* Gravity */
+@font-face {
+	font-family: "Gravity";
+	font-weight: normal;
+	src: url("/assets/fonts/gravity/r.otf");
+}
+@font-face {
+	font-family: "Gravity";
+	font-weight: normal;
+	font-style: italic;
+	src: url("/assets/fonts/gravity/ri.otf");
+}
+@font-face {
+	font-family: "Gravity";
+	font-weight: bold;
+	src: url("/assets/fonts/gravity/b.otf");
+}
+@font-face {
+	font-family: "Gravity";
+	font-weight: bold;
+	font-style: italic;
+	src: url("/assets/fonts/gravity/bi.otf");
+}
+/* Monospace font */
+@font-face {
+	font-family: "Inconsolata";
+	src: url("/assets/fonts/inconsolata.ttf");
+}
+/* Cursive */
+@font-face {
+	font-family: "Chilanka";
+	src: url("/assets/fonts/chilanka.ttf");
+}
