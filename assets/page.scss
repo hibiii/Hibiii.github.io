@@ -1,0 +1,85 @@
+---
+---
+:root {
+	--a-color: purple
+	--fg-color: black
+	--bg-color: white
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--fg-color: #e6e6e6;
+		--bg-color: #222;
+	}
+	mark.note {
+		background-color: gold;
+	}
+	footer {
+		border-color: white;
+	}
+	img.invertible {
+		filter: unquote("invert()");
+	}
+}
+
+@media screen {
+	body {
+		background-color: var(--bg-color);
+		color: var(--fg-color);
+	}
+}
+
+body {
+	font-family: "Gravity", "Helvetica", "Noto Sans", "Arial", sans-serif;
+	margin: auto;
+	max-width: 800px;
+	overflow-y: scroll;
+	padding: 5px
+}
+.curs {
+	font-family: "Chilanka", "Comic Neue", "Comic Sans", cursive;
+}
+code, pre {
+	font-family: "Inconsolata", "Lucida Console", monospace;
+}
+main {
+	margin-bottom: 5em;
+}
+a {
+	color: var(--a-color);
+}
+h1, h2 {
+	margin-bottom: 0;
+}
+.hicon {
+	float: left;
+	margin: 8px;
+}
+
+img {
+	margin: 20px;
+	max-width: 50%;
+	.big {
+		max-height: 100%;
+		max-width: 100%;
+	}
+	.small {
+		max-width: 25%;
+	}
+}
+div.center {
+	text-align: center;
+}
+mark.note {
+	background-color: khaki;
+	display: block;
+	padding: 10px;
+}
+footer {
+	border-top: 1px solid black;
+	padding: 0.2em;
+}
+.cl { clear: both; }
+.fr { float: right; }
+.fl { float: left; }
+

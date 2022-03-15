@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<rect width="16" height="16" fill="#111111"/>
-	<polyline points="4,2 12,2 12,9 9,9 9,11 7,11 7,7 10,7 10,4 6,4 6,5 4,5" fill="white"/>
-	<rect x="7" y="12" width="2" height="2" fill="white"/>
+	<rect width="16" height="16" fill="#382b5c"/>
+	<polyline points="7,2 8,2 8,6 10,6 10,7 13,7 13,8 11,8 11,12 12,12 12,9 14,9 14,14 9,14 9,10 10,10 10,13 13,13 13,10 10,10 10,8 8,8 8,12 2,12 2,11 7,11 7,9 9,9 9,4 7,4" fill="white"/>
 </svg>
