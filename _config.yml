@@ -14,3 +14,10 @@ defaults:
       layout: "mod"
       section: "Hibi's Mods"
       color: "#FF00FF"
+  -
+    scope:
+      path: "mod_doc"
+    values:
+      layout: "mod_doc"
+      section: "Hibi's Mods"
+      color: "#FF00FF"

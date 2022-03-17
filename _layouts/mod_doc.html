@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+{%include head.html%}
+	<body>
+		<main>
+			<img src="{{page.icon}}" height="52" class="hicon">
+			<h1>{{page.mod}}</h1>
+			<span>User's Manual and Technical Reference</span>
+			{{content}}
+		</main>
+		<footer>
+			<a href="#" onclick="history.go(-1)">Go Back</a> - <a href="/mods/{{ page.mod | downcase }}">About {{page.mod}}</a> - hibi
+		</footer>
+	</body>
+</html>

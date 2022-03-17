@@ -1,10 +1,11 @@
 ---
-title: Kappa Documentation
-description: Documentation and Technical Reference for the Kappa mod
+mod: Kappa
+title: Kappa User's Manual
 permalink: /mods/kappa/documentation
+icon: /assets/icon/kappa.svg
+color: "#808080"
 ---
-<h1>Kappa Documentation</h1>
-<ol>
+<ol class="cl">
 	<li><a href="#1">Intent</a></li>
 	<li><a href="#2">How to use</a></li>
 	<li><a href="#3">Testing</a></li>
@@ -19,18 +20,18 @@ permalink: /mods/kappa/documentation
 
 <h2 id="1">1. Intent</h2>
 <p>Kappa is aimed at bringing OptiFine capes to snapshots without being fragile to code changes perceived unrelated. It was spawned after Dragonostic's OF Capes mod broke in 1.17 snapshots due to the screen refactor (originally as a fork) and then also broke again because entity models were refactored, and their mod duplicated the cape code, as well as pretty much every other mod in the block at the time.</p>
-<p>Kappa uses a much more direct approach of injecting the cape texture directly into the metaphysical player. Additionally, it doesn't override any texture, and does not register its own cape rennderer whatsoever. Kappa's implementation is as close as you are going to get to vanilla.</p>
+<p>Kappa uses a much more direct approach of injecting the cape texture directly into the metaphysical player. Additionally, it doesn't override any texture, and does not register its own cape renderer whatsoever. Kappa's implementation is as close as you are going to get to vanilla.</p>
 
 <h2 id="2">2. How to use</h2>
 <p>Kappa's only requirement is Fabric Loader. There's no settings that need to be set before being used. With Kappa installed, any players with an OptiFine cape will have it be shown. If you'd like an OptiFine cape, consider <a href="optifine.net/donate">purchasing one from sp614x</a>. This mod does not allow players without OptiFine capes to have them.</p>
-<p>If you have an OptiFine cape and would like to change it, you'll have to go to the skin customization screen, and press the "Open Cape Editor" button on the bottom right corner. A web browser window will show up where you can edit your cape.</p>
+<p>If you have an OptiFine cape and would like to change it, you'll have to go to the skin customization screen, and press the "Open Cape Editor" button on the bottom right corner. A web browser window will show up where you can edit your cape. You'll have to restart your game for it to take effect.</p>
 
 <h2 id="3">3. Testing</h2>
 <p>Kappa is tested on every new snapshot when they are published, including experiments. Testing has three major points:</p>
 <ul>
 	<li><b>Whether Kappa does not crash the game.</b> This includes injection errors, and undefined methods. Most likely, crashes will be because the underlying game changed some code that Kappa relies upon.</li>
 	<li><b>Whether cape loading is working properly.</b> This includes players with capes having their capes load correctly, free of graphical corruption, and players without capes not having capes applied to them.</li>
-	<li><b>Whether the cape editor button launches a working cape editor.</b> It's been noted that the OptiFine cape editor is either a hit or a miss. If it launches the editor properly, then all is good. If it doesn't launch anything at all, or the cape editor is complaining of anything that's invalid, then maintenance must be made.</li>
+	<li><b>Whether the cape editor button launches a working cape editor.</b> It's been noted that the OptiFine cape editor is either a hit or a miss. If it launches the editor properly, then all is good. If it doesn't launch anything at all, or the cape editor is complaining of anything that's invalid, then maintenance must be done.</li>
 </ul>
 
 <h2 id="4">4. Technical Reference</h2>
@@ -49,8 +50,8 @@ permalink: /mods/kappa/documentation
 	<li><h4><code>NativeImage uncrop(NativeImage)</code></h4>
 		<p><code>uncrop</code> takes an input image and pads it such its dimensions are powers of two because the original images are cropped. The workflow is as follows:</p>
 		<ol>
-			<li>Calculate the pixel density ratio from expected:input ratio, <span class="math"><i>r</i><sub>d<sub>px</sub></sub> = &#x2308; <i>h</i> ÷ 32 &#x2309;</span>, known as <code>zoom</code> in the code. The height is used because some OptiFine server implementations don't use elytra textures, but cape textures with or without elytra are both 32 pixels high.</li>
-			<li>Create a new <code>NativeImage</code> with width <span class="math"><i>w</i>' = 64 × <i>r</i><sub>d<sub>px</sub></sub></span> and height <span class="math"><i>h</i>' = 32 × <i>r</i><sub>d<sub>px</sub></sub></span>.</li>
+			<li>Calculate the pixel density ratio from input:expected ratio, <span class="math"><i>r</i><sub>d<sub>px</sub></sub> = &#x2308; <i>h</i> ÷ 32 &#x2309;</span>, known as <code>zoom</code> in the code. The height is used because some OptiFine server implementations don't use elytra textures, but cape textures with or without elytra don't go taller than 32 pixels.</li>
+			<li>Create a new <code>NativeImage</code> with width <span class="math"><i>w'</i> = 64 × <i>r</i><sub>d<sub>px</sub></sub></span> and height <span class="math"><i>h'</i> = 32 × <i>r</i><sub>d<sub>px</sub></sub></span>.</li>
 			<li>Individually copy each pixel from the old image to the new image, anchoring the old one to the top left. This is a workaround for <code>NativeImage.copyFrom()</code>.</li>
 			<li>Return the new image.</li>
 		</ol>
@@ -61,7 +62,7 @@ permalink: /mods/kappa/documentation
 </ul>
 
 <h3 id="4_2">4.2. Cape injection</h3>
-<p>Cape injection is done by mixing into <code>PlayerListEntry</code>, and calling the provider to load the cape from the shadowed <code>GameProfile</code>. The callback that's required simply saves the <code>Identifier</code> to the cape texture onto the profile's textures map <i>if</i> there's no cape already present. This check makes sure an official vanilla cape isn't overwritten by an OptiFine cape.</p>
+<p>Cape injection is done by mixing into <code>PlayerListEntry</code>, and calling the provider to load the cape from the shadowed <code>GameProfile</code>. The injection is defined in <code>hibiii.kappa.mixin.PlayerListEntryMixin</code>. The callback that's required simply saves the <code>Identifier</code> to the cape texture onto the profile's textures map <i>if</i> there's no cape already present. This check makes sure an official vanilla cape isn't overwritten by an OptiFine cape.</p>
 
 <h3 id="4_3">4.3. Cape editor button</h3>
-<p>Inserting the cape editor button onto the skin customization screen is done with a mixin into <code>SkinOptionsScreen</code> and code inserted at the end of init. The inserted code is only a button, on the very bottom right corner with five pixel padding on both sides. The button is set to open a web browser with the URL provided to the editor. Additionally, the button text is a translatable text where the key isn't a more traditional <code>kappa.cape_editor</code>, but a deliberately much more human legible <code>Open Cape Editor...</code> because Fabric API may not be present to load the localization files and indeed, without them, only the key is diplayed.</p>
+<p>Inserting the cape editor button onto the skin customization screen is done with a mixin into <code>SkinOptionsScreen</code> and code inserted at the end of init. The inserted code is only a button, on the very bottom right corner with five pixel padding on both sides. The button is set to open a web browser with the URL to the editor provided. Additionally, the button text is a translatable text where the key isn't a more traditional <code>kappa.cape_editor</code>, but a deliberately much more human legible <code>Open Cape Editor...</code> because Fabric API may not be present to load the localization files and indeed, without them, only the key is diplayed. The button is defined in <code>hibiii.kappa.mixin.SkinOptionsScreenMixin</code>.</p>
