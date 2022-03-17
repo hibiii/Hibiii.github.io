@@ -21,6 +21,29 @@
 	font-style: italic;
 	src: url("/assets/fonts/gravity/bi.otf");
 }
+/* Libertine */
+@font-face {
+	font-family: "Linux Libertine";
+	font-weight: normal;
+	src: url("/assets/fonts/libertine/r.ttf");
+}
+@font-face {
+	font-family: "Linux Libertine";
+	font-weight: normal;
+	font-style: italic;
+	src: url("/assets/fonts/libertine/ri.ttf");
+}
+@font-face {
+	font-family: "Linux Libertine";
+	font-weight: bold;
+	src: url("/assets/fonts/libertine/b.ttf");
+}
+@font-face {
+	font-family: "Linux Libertine";
+	font-weight: bold;
+	font-style: italic;
+	src: url("/assets/fonts/libertine/bi.ttf");
+}
 /* Monospace font */
 @font-face {
 	font-family: "Inconsolata";

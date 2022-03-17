@@ -1,13 +1,14 @@
 ---
 ---
 :root {
-	--a-color: purple
-	--fg-color: black
-	--bg-color: white
+	--a-color: darkviolet;
+	--fg-color: black;
+	--bg-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
+		--a-color: violet;
 		--fg-color: #e6e6e6;
 		--bg-color: #222;
 	}
@@ -41,12 +42,15 @@ body {
 }
 code, pre {
 	font-family: "Inconsolata", "Lucida Console", monospace;
+	background-color: color-mix(in srgb, var(--bg-color) 90%, #808080);
+	padding: 1px 6px;
 }
 main {
 	margin-bottom: 5em;
 }
 a {
 	color: var(--a-color);
+	text-decoration: none;
 }
 h1, h2 {
 	margin-bottom: 0;
@@ -56,17 +60,19 @@ h1, h2 {
 	margin: 8px;
 }
 
-img {
-	margin: 20px;
-	max-width: 50%;
-	.big {
-		max-height: 100%;
-		max-width: 100%;
-	}
-	.small {
-		max-width: 25%;
-	}
+img { max-width: 50%; }
+img:not(.scrot) { margin: 20px; }
+img.big { max-height: 100%; max-width: 100%; }
+img.small { max-width: 25%; }
+
+.math {
+	font-family: "Linux Libertine", "Times New Roman", "Noto Serif", serif;
+	font-size: 1.25em;
 }
+span.math {
+	display: inline-block;
+}
+
 div.center {
 	text-align: center;
 }

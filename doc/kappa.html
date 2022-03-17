@@ -1,0 +1,67 @@
+---
+title: Kappa Documentation
+description: Documentation and Technical Reference for the Kappa mod
+permalink: /mods/kappa/documentation
+---
+<h1>Kappa Documentation</h1>
+<ol>
+	<li><a href="#1">Intent</a></li>
+	<li><a href="#2">How to use</a></li>
+	<li><a href="#3">Testing</a></li>
+	<li><a href="#4">Technical reference</a>
+		<ol>
+			<li><a href="#4_1">Cape provider</a></li>
+			<li><a href="#4_2">Cape injection</a></li>
+			<li><a href="#4_3">Cape editor button</a></li>
+		</ol>
+	</li>
+</ol>
+
+<h2 id="1">1. Intent</h2>
+<p>Kappa is aimed at bringing OptiFine capes to snapshots without being fragile to code changes perceived unrelated. It was spawned after Dragonostic's OF Capes mod broke in 1.17 snapshots due to the screen refactor (originally as a fork) and then also broke again because entity models were refactored, and their mod duplicated the cape code, as well as pretty much every other mod in the block at the time.</p>
+<p>Kappa uses a much more direct approach of injecting the cape texture directly into the metaphysical player. Additionally, it doesn't override any texture, and does not register its own cape rennderer whatsoever. Kappa's implementation is as close as you are going to get to vanilla.</p>
+
+<h2 id="2">2. How to use</h2>
+<p>Kappa's only requirement is Fabric Loader. There's no settings that need to be set before being used. With Kappa installed, any players with an OptiFine cape will have it be shown. If you'd like an OptiFine cape, consider <a href="optifine.net/donate">purchasing one from sp614x</a>. This mod does not allow players without OptiFine capes to have them.</p>
+<p>If you have an OptiFine cape and would like to change it, you'll have to go to the skin customization screen, and press the "Open Cape Editor" button on the bottom right corner. A web browser window will show up where you can edit your cape.</p>
+
+<h2 id="3">3. Testing</h2>
+<p>Kappa is tested on every new snapshot when they are published, including experiments. Testing has three major points:</p>
+<ul>
+	<li><b>Whether Kappa does not crash the game.</b> This includes injection errors, and undefined methods. Most likely, crashes will be because the underlying game changed some code that Kappa relies upon.</li>
+	<li><b>Whether cape loading is working properly.</b> This includes players with capes having their capes load correctly, free of graphical corruption, and players without capes not having capes applied to them.</li>
+	<li><b>Whether the cape editor button launches a working cape editor.</b> It's been noted that the OptiFine cape editor is either a hit or a miss. If it launches the editor properly, then all is good. If it doesn't launch anything at all, or the cape editor is complaining of anything that's invalid, then maintenance must be made.</li>
+</ul>
+
+<h2 id="4">4. Technical Reference</h2>
+<p>This section includes more implementational details. Any vanilla field and method names will be using <a href="https://github.com/FabricMC/yarn">Yarn mapping names</a> as they're unencumbered.</p>
+
+<h3 id="4_1">4.1. Cape provider</h3>
+<p>Historically, Kappa v. 3.0.0 was intented to have multiple cape providers for a one-size-fits-all. This would include Mantle, MinecraftCapes, Wynntils, LabyMod, and even Lunar Client with a bit of reversing, however that was dropped in favor of keeping only OptiFine. The upside of this is that the provider (OptiFine) is completely separate from any code handling integration with the videogame.</p>
+<p>The cape provider is defined in <code>hibiii.kappa.Provider</code> and defines the following fields and methods:</p>
+<ul>
+	<li><h4><code>void loadCape(GameProfile, CapeTextureAvailableCallback)</code></h4>
+		<p><code>loadCape</code> first checks if the cape has already been loaded to prevent it from being downloaded again. Then, the provider attempts to download with <code>tryUrl()</code>, first from the secure url at <code>https://optifine.net/capes/&lt;username&gt;.png</code> but if that's unavailabe, then try with <code>http://s.optifine.net/capes/&lt;username&gt;.png</code>, where historically has been used but does not support HTTPS. The callback is used to put the cape texture into the player profile. This workflow is pushed onto the main thread to prevent stutters.</p>
+	</li>
+	<li><h4><code>boolean tryUrl(GameProfile, CapeTextureAvailableCallback, String)</code></h4>
+		<p><code>tryUrl</code> attempts the full workflow of retrieving a cape. It reads the contents of the url given by the string, turns into an image, uncrops it with <code>uncrop</code> resizes into a power of 2, and registers this texture. The <code>Identifier</code> for this cape is stored, and the callback provided is called. For logic's sake, it returns <code>true</code> if it could successfully get a cape, or check if the player doesn't have one, or it returns false if it fails to connect, as a signal to retry.</p>
+	</li>
+	<li><h4><code>NativeImage uncrop(NativeImage)</code></h4>
+		<p><code>uncrop</code> takes an input image and pads it such its dimensions are powers of two because the original images are cropped. The workflow is as follows:</p>
+		<ol>
+			<li>Calculate the pixel density ratio from expected:input ratio, <span class="math"><i>r</i><sub>d<sub>px</sub></sub> = &#x2308; <i>h</i> ÷ 32 &#x2309;</span>, known as <code>zoom</code> in the code. The height is used because some OptiFine server implementations don't use elytra textures, but cape textures with or without elytra are both 32 pixels high.</li>
+			<li>Create a new <code>NativeImage</code> with width <span class="math"><i>w</i>' = 64 × <i>r</i><sub>d<sub>px</sub></sub></span> and height <span class="math"><i>h</i>' = 32 × <i>r</i><sub>d<sub>px</sub></sub></span>.</li>
+			<li>Individually copy each pixel from the old image to the new image, anchoring the old one to the top left. This is a workaround for <code>NativeImage.copyFrom()</code>.</li>
+			<li>Return the new image.</li>
+		</ol>
+	</li>
+	<li><h4><code>String getChangeUrl(Session)</code></h4>
+		<p><code>getChangeUrl</code> returns an URL where the current player can change their OptiFine cape. It does more than generate a change URL because OptiFine uses vanilla auth, and vanilla auth requires the username, the UUID, and randomly generated salt. No login details are required as long as you have a valid Minecraft session.</p>
+	</li>
+</ul>
+
+<h3 id="4_2">4.2. Cape injection</h3>
+<p>Cape injection is done by mixing into <code>PlayerListEntry</code>, and calling the provider to load the cape from the shadowed <code>GameProfile</code>. The callback that's required simply saves the <code>Identifier</code> to the cape texture onto the profile's textures map <i>if</i> there's no cape already present. This check makes sure an official vanilla cape isn't overwritten by an OptiFine cape.</p>
+
+<h3 id="4_3">4.3. Cape editor button</h3>
+<p>Inserting the cape editor button onto the skin customization screen is done with a mixin into <code>SkinOptionsScreen</code> and code inserted at the end of init. The inserted code is only a button, on the very bottom right corner with five pixel padding on both sides. The button is set to open a web browser with the URL provided to the editor. Additionally, the button text is a translatable text where the key isn't a more traditional <code>kappa.cape_editor</code>, but a deliberately much more human legible <code>Open Cape Editor...</code> because Fabric API may not be present to load the localization files and indeed, without them, only the key is diplayed.</p>
