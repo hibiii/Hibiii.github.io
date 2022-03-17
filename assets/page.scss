@@ -80,6 +80,11 @@ mark.note {
 	background-color: khaki;
 	display: block;
 	padding: 10px;
+	a {
+		color: inherit;
+		text-decoration: underline;
+		font-weight: bold;
+	}
 }
 footer {
 	border-top: 1px solid black;
