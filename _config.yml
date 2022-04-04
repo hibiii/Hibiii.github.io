@@ -16,8 +16,9 @@ defaults:
       color: "#FF00FF"
   -
     scope:
-      path: "mod_doc"
+      path: "mods/doc"
     values:
       layout: "mod_doc"
+      description: "User's Manual and Technical Reference"
       section: "Hibi's Mods"
       color: "#FF00FF"

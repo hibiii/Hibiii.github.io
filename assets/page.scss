@@ -73,7 +73,7 @@ span.math {
 	display: inline-block;
 }
 
-div.center {
+.center {
 	text-align: center;
 }
 mark.note {
@@ -87,10 +87,36 @@ mark.note {
 	}
 }
 footer {
-	border-top: 1px solid black;
+	border-top: 1px solid var(--fg-color);
 	padding: 0.2em;
+	clear: both;
 }
 .cl { clear: both; }
 .fr { float: right; }
 .fl { float: left; }
 
+table {
+	border-collapse: collapse;
+	margin: 0;
+	caption-side: top;
+	caption {
+		font-weight: bold;
+		padding: 0.6em;
+	}
+}
+td, th {
+	padding: 0.6em;
+	border: 1px solid var(--fg-color);
+}
+
+details {
+	border: 1px solid var(--fg-color);
+	padding: .5em;
+	margin: .5em 0;
+	summary {
+		font-weight: bold;
+	}
+}
+details[open] summary {
+	margin-bottom: .5em;
+}
