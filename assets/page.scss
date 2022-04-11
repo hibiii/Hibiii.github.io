@@ -1,22 +1,22 @@
 ---
 ---
 :root {
-	--a-color: darkviolet;
+	--a-color: mediumvioletred;
 	--fg-color: black;
 	--bg-color: white;
+	--mark-color: khaki;
+	--codeb-color: #f2f2f2;
+	--codeb-comment: mediumvioletred;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--a-color: violet;
+		--a-color: hotpink;
 		--fg-color: #e6e6e6;
 		--bg-color: #222;
-	}
-	mark.note {
-		background-color: gold;
-	}
-	footer {
-		border-color: white;
+		--mark-color: gold;
+		--codeb-color: #2b2b2b;
+		--codeb-comment: hotpink;
 	}
 	img.invertible {
 		filter: unquote("invert()");
@@ -40,10 +40,24 @@ body {
 .curs {
 	font-family: "Chilanka", "Comic Neue", "Comic Sans", cursive;
 }
-code, pre {
+code,
+pre:not(code pre) {
 	font-family: "Inconsolata", "Lucida Console", monospace;
-	background-color: color-mix(in srgb, var(--bg-color) 90%, #808080);
+	background-color: var(--codeb-color);
 	padding: 1px 6px;
+	font-size: 1.25em;
+}
+code.block {
+	display: block;
+	margin: 0.25em 0 0.25em 2em;
+	padding: 0.25em 1em;
+	border-left: 1px solid var(--fg-color);
+	.comment {
+		color: var(--codeb-comment);
+	}
+	.comment::before {
+		content: "// ";
+	}
 }
 main {
 	margin-bottom: 5em;
@@ -76,8 +90,8 @@ span.math {
 .center {
 	text-align: center;
 }
+mark { background-color: var(--mark-color); }
 mark.note {
-	background-color: khaki;
 	display: block;
 	padding: 10px;
 	a {

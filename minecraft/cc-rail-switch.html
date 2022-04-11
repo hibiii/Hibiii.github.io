@@ -1,0 +1,78 @@
+---
+title: Computer&ZeroWidthSpace;Craft Based Rail Switching
+description: A study on how ComputerCraft could improve vanilla style minecart railways.
+---
+<h1>Computer&ZeroWidthSpace;Craft Based Rail Switching</h1>
+<mark class="note">Page under construction: this is an incomplete draft.</mark>
+
+<p>So, I was asking myself one day "how can I use Computer&ZeroWidthSpace;Craft to improve vanilla gameplay?" and I decided to mash with one of the worst features of the entire game, minecarts. The most common uses for minecarts currently are for small redstone contraptions, or transporting entities either in a permanent circuit or a temporary way, not even passenger or freight is considered.</p>
+<p>This switching system is designed for single cars with a player inside, but with some modification could probably run multiple car trains. This system is <u>not</u> designed with multiple trains running in mind, it is <u>not</u> designed to do any blocking, only switching.</p>
+
+<h2>The Problem</h2>
+<p>How do you share a piece of minecart rail with different routes efficiently? In other words, how do you synchronize the switches in a minecart rail network such that a minecart with any destination will get to it reliably and autonomously, and in a way that's easy to implement and uses few resources?</p>
+<p>Worded like that, we know our constraints:</p>
+<ul>
+	<li>The switcher must be cheap to build</li>
+	<li>The switcher must be easy to build</li>
+	<li>The switcher must work flawlessly</li>
+</ul>
+
+<h2>First Proposal</h2>
+<p>At first, the envisioned solution would be to have a central control computer, where the whole track could be controlled from. Wiring everything would be tedious and extremely difficult given a computer has only a handful of redstone outputs. CC has ender modems (equivalent to ubiquitous wireless data networks) however, and so you could replace the individual wires with a computerized switch. The downside of this though, is that you would connect a lot of computers onto the endernet.</p>
+<p>However, there's a very fundamental detail that's underlooked and effectively shoots down this proposal. There are no guarantees that the switches themselves are loaded when the command to change them are sent out, or the central computer itself. This lack of guarantee means the minecart could encounter a switch in an undefined state, thus diverging from its route.</p>
+
+<h2>A Solution</h2>
+<p>After analyzing the first proposal, the following points are observed and inferred:</p>
+<ul>
+	<li>The switch must be loaded when being set</li>
+	<li>The control computer must be loaded when setting</li>
+	<li>The switch does not need to be set when the minecart starts its journey</li>
+	<li>The switch must be set before the cart passes over it</li>
+</ul>
+<p>The switch must be loaded when being set, but there's a guarantee that relevant switches <i>will</i> be loaded, when the minecart arrives at it. Instead of sending switch set signals, the switch could ask the control computer the position it should be in.</p>
+<p>The control computer must be loaded when setting, but there is a type of computer that may guarantee itself being loaded: the pocket computer. Pocket computers are items, and so, they can be taken <i>with</i> the player, and since the player <i>always</i> loads chunks, it's a guarantee that the control computer is loaded.</p>
+<p>The switch must be set <i>some</i> time before the minecart passes it. Switch computers will be loaded when the minecart gets reasonably close to it, but long enough before the minecart passes it, a comfortable amount of time to set the switch.</p>
+
+<h3>The Switcher</h3>
+<p>The switcher in this would have three functions: detect an incoming minecart; querying how the switch should be set; setting the switch. Detection can be done very easily with an activator rail, and the communication can be done with a wireless modem, as the control computer will be close by.</p>
+<p>The software on the switch computer could be structured like this:</p>
+<code class="block"><pre><b>static data</b>:
+    identifier <span class="comment">set on installation</span>
+    querymessage = identifier .. " query"
+
+<b>define</b> main:
+    <i>configure</i> networking
+    <b>loop</b>:
+        <i>pull event</i> "redstone"
+        <i>broadcast</i> querymessage
+        <b>let</b> response = <i>receive message with timeout</i>
+        <b>if</b> <b>not</b> message:
+            <b>continue</b>
+        <b>let</b> messageid, p = <i>parse</i> response
+        <b>if</b> messageid ≠ identifier:
+            <b>continue</b>
+        <i>output redstone</i> p
+        <i>sleep for</i> 2 seconds</pre></code>
+
+<h3>The Control Computer</h3>
+<p>The control computer should be a pocket wireless computer carried by the player, it doesn't need to do much as it'll only answer query messages.</p>
+<p>The software on the control computer could be structured like this:</p>
+<code class="block"><pre><b>define</b> loadroute:
+    <b>let</b> routes = <i>load routes from file</i>
+    <b>set</b> switches = <i>ask user to select route</i>
+
+<b>define</b> main:
+    <i>loadroute</i>
+    <i>configure</i> networking
+    <b>loop</b>:
+        <b>let</b> message = <i>receive message</i>
+        <b>if not</b> message <i>ends with</i> " query":
+            <b>continue</b>
+        <b>let</b> id = <i>parse</i> message
+        <b>let</b> switch = <i>find in</i> switches for id
+        <b>if not</b> switch:
+            <i>display error message</i>
+            <b>continue</b>
+        <i>send message</i> with id and switch state
+        <b>if</b> no more switches left:
+            <b>return</b></pre></code>
