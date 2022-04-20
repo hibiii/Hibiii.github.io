@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="88" height="31" viewBox="0 0 88 31" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<rect x="0" y="0" width="88" height="31" fill="#fff"></rect>
+	<polyline points="0,31 2,29 86,29 86,2 88,0 88,31" fill="#000"></polyline>
+	<rect x="2" y="2" width="84" height="27" fill="#ccc" id="a"></rect>
+	<text x="50%" y="52.5%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-style="italic" >hibi <tspan fill="#7920a9">&lt;/3</tspan></text>
+</svg>
