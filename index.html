@@ -4,14 +4,16 @@ layout: null
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Hibi's Retreat</title>
+		<title>hibi</title>
 		<meta charset="utf-8">
-		<meta name="og:title" content="Hibi's Retreat">
-		<meta name="og:description" content="Welcome to my little webspace!">
-		<meta name="og:image" content="/assets/art/thinkc.png">
-		<meta name="og:type" content="profile:hibi">
-		<meta name="theme-color" content="#808080">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<meta name="og:title" content="hibi"/>
+		<meta name="og:description" content="meet the hibi - a gamer, developer, minecrafter... human"/>
+		<meta name="og:image" content="/assets/art/thinkc.png"/>
+		<meta name="og:type" content="profile:hibi"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" content="@uhHibi"/>
+		<meta name="theme-color" content="#808080"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="icon" type="image/png" href="/assets/art/thinkc.png">
 		<link href="/assets/fonts.css" rel="stylesheet">
 		<style>
@@ -52,6 +54,9 @@ layout: null
 				padding: 0;
 				height: 2em;
 			}
+			main p {
+				max-width: 350px
+			}
 			.credit {
 				position: fixed;
 				bottom: 10px;
@@ -69,14 +74,19 @@ layout: null
 		<main>
 			<img src="/assets/art/think.png" width="150px">
 			<h1>meet the hibi</h1>
-			<p>gamer, developer, minecrafter... human</p>
-			<a href="/mods/">mods</a>
-			<a href="/minecraft/">minecraft</a>
-			<a href="/about/me">about me</a><br>
+			<p>software developer, artist, minecrafter...</p>
+			<p>a flawed human who tries their best.</p>
+			<div style="margin: 2pt 0 4pt">
+				<a href="/mods/">mods</a>
+				<a href="/minecraft/">minecraft</a>
+				<a href="/quotes">quotes</a>
+			</div>
 			<a href="https://twitter.com/uhHibi"><img src="/assets/3rd/twitter.svg" alt="Twitter"></a>&ensp;
 			<a href="https://www.youtube.com/channel/UCaYG1ISN4HMo0H9W1vLOSQg"><img src="/assets/3rd/youtube.svg" alt="YouTube"></a>&ensp;
 			<a href="https://discord.com/users/593318273207238656" id="dc"><img src="/assets/3rd/discord.svg" alt="Discord"></a>&ensp;
 			<a href="https://github.com/Hibiii"><img src="/assets/3rd/github.svg" alt="GitHub"></a>
+			<a rel="me" href="https://sleeping.town/@hibi" style="display:none"></a><br>
+			<span id="ld">last updated 1 jan 1970</span>
 		</main>
 		<div class="credit">
 			Dylann Hendricks<br>
@@ -84,4 +94,8 @@ layout: null
 			12 aug 2021
 		</div>
 	</body>
+	<script>{
+		let d = new Date(document.lastModified)
+		document.getElementById("ld").innerText = "last updated " + d.toLocaleDateString("en-GB", {year: 'numeric', month: 'long', day: 'numeric' }).toLocaleLowerCase("en-US")
+	}</script>
 </html>

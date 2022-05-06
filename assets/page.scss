@@ -9,20 +9,6 @@
 	--codeb-comment: mediumvioletred;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--a-color: hotpink;
-		--fg-color: #e6e6e6;
-		--bg-color: #222;
-		--mark-color: gold;
-		--codeb-color: #2b2b2b;
-		--codeb-comment: hotpink;
-	}
-	img.invertible {
-		filter: unquote("invert()");
-	}
-}
-
 @media screen {
 	body {
 		background-color: var(--bg-color);
@@ -40,14 +26,17 @@ body {
 .curs {
 	font-family: "Chilanka", "Comic Neue", "Comic Sans", cursive;
 }
-code,
-pre:not(code pre) {
+code, pre:not(code pre) {
 	font-family: "Inconsolata", "Lucida Console", monospace;
 	background-color: var(--codeb-color);
 	padding: 1px 6px;
 	font-size: 1.25em;
 }
-code.block {
+mark code, mark pre:not(code pre) {
+	background-color: unset;
+}
+code.block,
+pre.block {
 	display: block;
 	margin: 0.25em 0 0.25em 2em;
 	padding: 0.25em 1em;
@@ -69,6 +58,9 @@ a {
 h1, h2 {
 	margin-bottom: 0;
 }
+h1[id]::before, h2[id]::before, h3[id]::before {
+	content: attr(id) ". ";
+}
 .hicon {
 	float: left;
 	margin: 8px;
@@ -78,6 +70,11 @@ img { max-width: 50%; }
 img.pad { margin: 20px; }
 img.big { max-height: 100%; max-width: 100%; }
 img.small { max-width: 25%; }
+img.sdw { 
+	background-color: inherit;
+	box-shadow: 5px 5px var(--fg-color);
+	margin: 5px;
+}
 
 .math {
 	font-family: "Linux Libertine", "Times New Roman", "Noto Serif", serif;
@@ -86,7 +83,6 @@ img.small { max-width: 25%; }
 span.math {
 	display: inline-block;
 }
-
 .center {
 	text-align: center;
 }
@@ -117,10 +113,10 @@ table {
 		font-weight: bold;
 		padding: 0.6em;
 	}
-}
-td, th {
-	padding: 0.6em;
-	border: 1px solid var(--fg-color);
+	td, th {
+		padding: 0.6em;
+		border: 1px solid var(--fg-color);
+	}
 }
 
 details {
@@ -133,4 +129,45 @@ details {
 }
 details[open] summary {
 	margin-bottom: .5em;
+}
+
+hr {
+	border: none; 
+	border-top: 1px solid var(--fg-color);
+}
+
+.gallery {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	gap: 10px;
+	a {
+		display: flex;
+		max-height: 300px;
+		max-width: calc(50% - 10px);
+		align-items: center;
+		justify-content: center;
+		img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--a-color: hotpink;
+		--fg-color: #e6e6e6;
+		--bg-color: #222;
+		--mark-color: gold;
+		--codeb-color: #2b2b2b;
+		--codeb-comment: hotpink;
+	}
+	img.invertible {
+		filter: unquote("invert()");
+	}
+	img.sdw {
+		box-shadow: none;
+	}
 }

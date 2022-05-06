@@ -2,14 +2,14 @@
 title: 404 Cute Not Found
 permalink: /404.html
 ---
-<h1 id="a" style="color: red;">404 Cute Not Found</h1>
+<h1 style="color: red;">404 Cute Not Found</h1>
 <p id="b">Check the url, is there a typo? Maybe you are looking for something that's had its existing license revoked. Or Hibi haz teh dumbz and hyperlinkn't.</p>
 <p id="c" style="font-size: larger; font-style: italic;">oops!</p>
 <small id="d" style="display:block"></small>
 <script>
     document.getElementById("d").innerHTML = "404 <i>of</i> " + document.URL
     /*"*/ if(Math.random() * 60 < 1 || document.URL.endsWith("/uwu")) {/*"*/
-        document.getElementById("a").innerText = "404 oopsie woopsie!!"
+        document.getElementsByClassName("h1")[0].innerText = "404 oopsie woopsie!!"
         document.getElementById("b").innerText = "uwu I made a messy bessy! A wittle mucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!"
         document.getElementById("c").innerText = "uwu"
     }

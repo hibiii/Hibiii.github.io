@@ -4,7 +4,7 @@ defaults:
       path: ""
     values:
       layout: "page"
-      section: "Hibi's Retreat"
+      section: "hibi"
       icon: "/assets/art/kbwrior.png"
       color: "#808080"
   -
@@ -12,7 +12,7 @@ defaults:
       path: "mods"
     values:
       layout: "mod"
-      section: "Hibi's Mods"
+      section: "hibi's mods"
       color: "#FF00FF"
   -
     scope:
@@ -20,5 +20,5 @@ defaults:
     values:
       layout: "mod_doc"
       description: "User's Manual and Technical Reference"
-      section: "Hibi's Mods"
+      section: "hibi's mods"
       color: "#FF00FF"

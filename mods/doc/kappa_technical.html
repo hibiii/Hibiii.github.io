@@ -11,22 +11,22 @@ color: "#808080"
 	<li><a href="#3">Testing</a></li>
 	<li><a href="#4">Technical reference</a>
 		<ol>
-			<li><a href="#4_1">Cape provider</a></li>
-			<li><a href="#4_2">Cape injection</a></li>
-			<li><a href="#4_3">Cape editor button</a></li>
+			<li><a href="#4.1">Cape provider</a></li>
+			<li><a href="#4.2">Cape injection</a></li>
+			<li><a href="#4.3">Cape editor button</a></li>
 		</ol>
 	</li>
 </ol>
 
-<h2 id="1">1. Intent</h2>
+<h2 id="1">Intent</h2>
 <p>Kappa is aimed at bringing OptiFine capes to snapshots without being fragile to code changes perceived unrelated. It was spawned after Dragonostic's OF Capes mod broke in 1.17 snapshots due to the screen refactor (originally as a fork) and then also broke again because entity models were refactored, and their mod duplicated the cape code, as well as pretty much every other mod in the block at the time.</p>
 <p>Kappa uses a much more direct approach of injecting the cape texture directly into the metaphysical player. Additionally, it doesn't override any texture, and does not register its own cape renderer whatsoever. Kappa's implementation is as close as you are going to get to vanilla.</p>
 
-<h2 id="2">2. How to use</h2>
+<h2 id="2">How to use</h2>
 <p>Kappa's only requirement is Fabric Loader. There's no settings that need to be set before being used. With Kappa installed, any players with an OptiFine cape will have it be shown. If you'd like an OptiFine cape, consider <a href="optifine.net/donate">purchasing one from sp614x</a>. This mod does not allow players without OptiFine capes to have them.</p>
 <p>If you have an OptiFine cape and would like to change it, you'll have to go to the skin customization screen, and press the "Open Cape Editor" button on the bottom right corner. A web browser window will show up where you can edit your cape. You'll have to restart your game for it to take effect.</p>
 
-<h2 id="3">3. Testing</h2>
+<h2 id="3">Testing</h2>
 <p>Kappa is tested on every new snapshot when they are published, including experiments. Testing has three major points:</p>
 <ul>
 	<li><b>Whether Kappa does not crash the game.</b> This includes injection errors, and undefined methods. Most likely, crashes will be because the underlying game changed some code that Kappa relies upon.</li>
@@ -34,10 +34,10 @@ color: "#808080"
 	<li><b>Whether the cape editor button launches a working cape editor.</b> It's been noted that the OptiFine cape editor is either a hit or a miss. If it launches the editor properly, then all is good. If it doesn't launch anything at all, or the cape editor is complaining of anything that's invalid, then maintenance must be done.</li>
 </ul>
 
-<h2 id="4">4. Technical Reference</h2>
+<h2 id="4">Technical Reference</h2>
 <p>This section includes more implementational details. Any vanilla field and method names will be using <a href="https://github.com/FabricMC/yarn">Yarn mapping names</a> as they're unencumbered.</p>
 
-<h3 id="4_1">4.1. Cape provider</h3>
+<h3 id="4.1">Cape provider</h3>
 <p>Historically, Kappa v. 3.0.0 was intented to have multiple cape providers for a one-size-fits-all. This would include Mantle, MinecraftCapes, Wynntils, LabyMod, and even Lunar Client with a bit of reversing, however that was dropped in favor of keeping only OptiFine. The upside of this is that the provider (OptiFine) is completely separate from any code handling integration with the videogame.</p>
 <p>The cape provider is defined in <code>hibiii.kappa.Provider</code> and defines the following fields and methods:</p>
 <ul>
@@ -61,8 +61,8 @@ color: "#808080"
 	</li>
 </ul>
 
-<h3 id="4_2">4.2. Cape injection</h3>
+<h3 id="4.2">Cape injection</h3>
 <p>Cape injection is done by mixing into <code>PlayerListEntry</code>, and calling the provider to load the cape from the shadowed <code>GameProfile</code>. The injection is defined in <code>hibiii.kappa.mixin.PlayerListEntryMixin</code>. The callback that's required simply saves the <code>Identifier</code> to the cape texture onto the profile's textures map <i>if</i> there's no cape already present. This check makes sure an official vanilla cape isn't overwritten by an OptiFine cape.</p>
 
-<h3 id="4_3">4.3. Cape editor button</h3>
+<h3 id="4.3">Cape editor button</h3>
 <p>Inserting the cape editor button onto the skin customization screen is done with a mixin into <code>SkinOptionsScreen</code> and code inserted at the end of init. The inserted code is only a button, on the very bottom right corner with five pixel padding on both sides. The button is set to open a web browser with the URL to the editor provided. Additionally, the button text is a translatable text where the key isn't a more traditional <code>kappa.cape_editor</code>, but a deliberately much more human legible <code>Open Cape Editor...</code> because Fabric API may not be present to load the localization files and indeed, without them, only the key is displayed. The button is defined in <code>hibiii.kappa.mixin.SkinOptionsScreenMixin</code>.</p>
