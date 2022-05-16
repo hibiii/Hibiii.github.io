@@ -7,6 +7,10 @@
 	--mark-color: khaki;
 	--codeb-color: #f2f2f2;
 	--codeb-comment: mediumvioletred;
+	--fn-sans: "Gravity", "Helvetica", "Noto Sans", "Arial", sans-serif;
+	--fn-serif: "Linux Libertine", "Times New Roman", "Noto Serif", serif;
+	--fn-monospace: "Inconsolata", "Lucida Console", monospace;
+	--fn-cursive: "Chilanka", "Comic Neue", "Comic Sans", cursive;
 }
 
 @media screen {
@@ -17,17 +21,16 @@
 }
 
 body {
-	font-family: "Gravity", "Helvetica", "Noto Sans", "Arial", sans-serif;
+	font-family: var(--fn-sans);
 	margin: auto;
-	max-width: 800px;
 	overflow-y: scroll;
-	padding: 5px
+	width: clamp(300px, 70%, 1200px);
 }
 .curs {
-	font-family: "Chilanka", "Comic Neue", "Comic Sans", cursive;
+	font-family: var(--fn-cursive);
 }
 code, pre:not(code pre) {
-	font-family: "Inconsolata", "Lucida Console", monospace;
+	font-family: var(--fn-monospace);
 	background-color: var(--codeb-color);
 	padding: 1px 6px;
 	font-size: 1.25em;
@@ -61,6 +64,11 @@ h1, h2 {
 h1[id]::before, h2[id]::before, h3[id]::before {
 	content: attr(id) ". ";
 }
+h4 {
+	margin-bottom: 0;
+	font-style: italic;
+}
+
 .hicon {
 	float: left;
 	margin: 8px;
@@ -77,7 +85,7 @@ img.sdw {
 }
 
 .math {
-	font-family: "Linux Libertine", "Times New Roman", "Noto Serif", serif;
+	font-family: var(--fn-serif);
 	font-size: 1.25em;
 }
 span.math {

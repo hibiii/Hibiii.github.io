@@ -1,0 +1,324 @@
+---
+mod: Scooters
+title: Scooter User's Manual
+permalink: /mods/scooters/manual
+icon: /assets/icon/scooters.svg
+color: "#382b5c"
+use_math: true
+---
+<mark class="note">Page under construction</mark>
+
+<ol>
+	<li><a href="#1">Initial Setup</a>
+		<ol>
+			<li><a href="#1.1">Requirements</a></li>
+			<li><a href="#1.2">Use on Dedicated Servers</a></li>
+			<li><a href="#1.3">Quilt and Fabric support</a></li>
+		</ol>
+	</li>
+	<li><a href="#2">Scooters</a></li>
+	<li><a href="#3">Tires</a></li>
+	<li><a href="#4">Charging Station</a></li>
+	<li><a href="#5">Technical Reference</a>
+		<ol>
+			<li><a href="5.1">Riding Physics</a></li>
+			<li><a href="5.2">Registry Entries</a></li>
+		</ol>
+	</li>
+</ol>
+
+<h2 id="1">Initial Setup</h2>
+
+<h3 id="1.1">Requirements</h3>
+
+<h3 id="1.2">Use on Dedicated Servers</h3>
+<p>Scooters Mod is required on both sides of the server-client paradigm. Server-side provides items and entities players can interact with and client-side provides the physics.</p>
+<p><mark>Note that Scooters Mod does not provide a warning to players connecting without it installed on the client.</mark> Instead, the underlying copy of Minecraft will complain about missing registry entries. Interoperability with mods that register the same identifiers or resource locations is <i>not</i> guaranteed. For a table of what's registered, see <a href="#3.1">Registry Entries</a>.</p>
+
+<h3 id="1.3">Quilt and Fabric support</h3>
+
+<h2 id="2">Scooters</h2>
+
+<h2 id="5">Technical Reference</h2>
+
+<p>This section uses Yarn names, and names based from it.</p>
+
+<h3 id="5.1">Riding Physics</h3>
+<mark class="note">Note: this set of formulas are only for when the player is riding a scooter.</mark>
+<h4>Rotation</h4>
+<p>First we need to calculate how much we spin in a frame:</p>
+<math class="block center">
+	<mo>Δ</mo><mi>ϑ</mi> <mo>=</mo> 
+	<mrow><mo>{</mo>
+		<mtable>
+			<mtr>
+				<mtd columnalign="center"><mo>-</mo><msub><mi>θ</mi><mtext>accel</mtext></mtd>
+				<mtd columnalign="left"><mtext>steering left;</mtext></mtd>
+			</mtr>
+			<mtr>
+				<mtd columnalign="center"><mn>0</mn></mtd>
+				<mtd columnalign="left"><mtext>going straight;</mtext></mtd>
+			</mtr>
+			<mtr>
+				<mtd columnalign="center"><mo>+</mo><msub><mi>θ</mi><mtext>accel</mtext></mtd>
+				<mtd columnalign="left"><mtext>steering right.</mtext></mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</math>
+<p>Negative rotation in Minecraft is counter-clockwise, as viewed from above. We can then set our rotation and also apply some decay to it with:</p>
+<math class="block center">
+	<mi>ϑ</mi><mo>'</mo> <mo>=</mo> <mi>ϑ</mi> <mo>×</mo> <mn>0.8</mn> <mo>+</mo> <mo>Δ</mo><mi>ϑ</mi>
+</math>
+
+<h4>Movement</h4>
+<p>Because movement is a terrible hacky mess, it doesn't follow any principles.</p>
+<details>
+	<summary>Variables and their meanings</summary>
+	<style>
+		#mathtab tr > td:first-child {
+			font-family: serif;
+			font-style: italic;
+		}
+		#mathtab [s] {
+			font-style: normal;
+		}
+	</style>
+	<table id="mathtab">
+		<tr>
+			<th>Variable</th>
+			<th>Meaning</th>
+		</tr>
+		<tr>
+			<td>t</td>
+			<td>Tire resistance, used for popped tires</td>
+		</tr>
+		<tr>
+			<td>i</td>
+			<td>Momentary inertia, used for speed decay <i>and</i> active braking. 0 ≤ i ≤ 1</td>
+		</tr>
+		<tr>
+			<td>I<sub s>base</sub></td>
+			<td>Base inertia, a constant defined by scooter type</td>
+		</tr>
+		<tr>
+			<td>I<sub s>coast</sub></td>
+			<td>Inertia while coasting, a constant defined by scooter type</td>
+		</tr>
+		<tr>
+			<td>f<sub>b</sub></td>
+			<td>Brake force, a constant defined by scooter type</td>
+		</tr>
+		<tr>
+			<td>A</td>
+			<td>Acceleration on throttle, a constant defined by scooter type</td>
+		</tr>
+		<tr>
+			<td>V<sub s>xz</sub></td>
+			<td>The maximum horizontal speed achievable, defined by scooter type</td>
+		</tr>
+	</table>
+</details>
+<p>We calculate horizontal movement using speed and vectoring it. One of the variables for it is inertia, but a better name for it may be resistance. It is calculated as such:</p>
+<math class="block center">
+	<mi>i</mi> <mo>=</mo> 
+	<mrow><mo>{</mo>
+		<mtable>
+			<mtr>
+				<mtd columnalign="center">
+					<mi>t</mi> <mo>×</mo> <msub><mi>f</mi><mi>b</mi></msub> <mo>×</mo>
+					<msub>
+						<mi>I</mi>
+						<mi>base</mi>
+					</msub>
+				</mtd>
+				<mtd columnalign="left">
+					<mtext>if braking</mtext>
+					<mo>;</mo>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd columnalign="center">
+					<msub>
+						<mi>I</mi>
+						<mi>base</mi>
+					</msub>
+				</mtd>
+				<mtd columnalign="left">
+					<mtext>if accelerating and</mtext>
+					<msub><mi>v</mi><mi>xz</mi></msub> <mo>&lt;</mo> <msub><mi>V</mi><mi>xz</mi></msub>
+					<mo>;</mo>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd columnalign="center">
+					<msub>
+						<mi>I</mi>
+						<mi>coast</mi>
+					</msub>
+				</mtd>
+				<mtd columnalign="left">
+					<mtext>when else.</mtext>
+				</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</math>
+<p>Next, we calculate the acceleration and speed. There's no jerk so acceleration is quite simple. Calculations for speed, as previously stated, is based on the length of the speed vector in X-Z:</p>
+<math class="block center">
+	<mi>a</mi> <mo>=</mo> 
+	<mrow><mo>{</mo>
+		<mtable>
+			<mtr>
+				<mtd columnalign="center"><mi>A</mi> <mo>×</mo> <mi>t</mi></mtd>
+				<mtd columnalign="left"><mtext>if accelerating;</mtext></mtd>
+			</mtr>
+			<mtr>
+				<mtd columnalign="center"><mn>0</mn></mtd>
+				<mtd columnalign="left"><mtext>when else.</mtext></mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</math>
+<math class="block center">
+	<msub><mi>v</mi><mi>xz</mi></msub> <mo>=</mo>
+	<mo stretchy="true" fence="true">|</mo>
+		<mi mathvariant="bold-italic">v</mi>
+		<mo>×</mo>
+		<mrow>
+			<mo fence="true">(</mo>
+			<mn>1</mn> <mo separator="true">,</mo>
+			<mn>0</mn> <mo separator="true">,</mo>
+			<mn>1</mn> <mo fence="true">)</mo>
+		</mrow>
+	<mo stretchy="true" fence="true">|</mo>
+	<mo>+</mo>
+	<mi>a</mi>
+</math>
+<p>We can now apply our speed using the new calculated speed, the inertia, and the new angle:</p>
+<math class="block center">
+	<mi mathvariant="bold-italic">v</mi><mo>'</mo> <mo>=</mo>
+	<mo fence="true">(</mo>
+		<mrow><mo>-</mo> <mo>sin</mo> <mi>ϑ</mi><mo>'</mo> <mo>×</mo> <msub><mi>v</mi><mi>xz</mi></msub> <mo>×</mo> <mi>i</mi></mrow>
+		<mo separator="true">,</mo>
+		<mrow><msub><mi mathvariant="bold-italic">v</mi><mi>y</mi></msub> <mo>-</mo> <mn>0.04</mn></mrow>
+		<mo separator="true">,</mo>
+		<mrow><mo>cos</mo> <mi>ϑ</mi><mo>'</mo> <mo>×</mo> <msub><mi>v</mi><mi>xz</mi></msub> <mo>×</mo> <mi>i</mi></mrow>
+	<mo fence="true">)</mo>
+</math>
+
+<h3 id="5.2">Registry Entries</h3>
+<details>
+	<summary>Registry Entries Reference</summary>
+	<table>
+		<tr>
+			<th>Registry</th>
+			<th>Identifier</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td rowspan="2">Entity Types</td>
+			<td><code>scooters:kick_scooter</code></td>
+			<td>The rideable Kick Scooter vehicle, proper.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:electric_scooter</code></td>
+			<td>The upgraded version, the Electric Scooter entity.</td>
+		</tr>
+		<tr>
+			<td>Blocks</td>
+			<td><code>scooters:charging_station</code></td>
+			<td>The physical block in the world representing a Charging Station, which you can interact with. This block has no logic and all logic is delegated to the block entity.</td>
+		</tr>
+		<tr>
+			<td>Block Entity Types</td>
+			<td><code>scooters:charging_station</code></td>
+			<td>The logical Charging Station with e-scooter attaching and detaching logic. Charging Station block entities should be automatically created and deleted when manipulating the charging station block.</td>
+		</tr>
+		<tr>
+			<td rowspan="5">Items</td>
+			<td><code>scooters:kick_scooter</code></td>
+			<td>The item representing a Kick Scooter, which you can immediately place in the world and gets dropped from kick scooters.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:electric_scooter</code></td>
+			<td>The item representing an Electric Scooter, which you can immediately place in the world and gets dropped from electric scooters.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:charging_station</code></td>
+			<td>The item representing a Charging Station, which you can immediately place in the world and gets dropped when the block is mined or exploded.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:tire</code></td>
+			<td>The Tire item. This item must be damageable with durability of 640.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:raw_tire</code></td>
+			<td>The Raw Tire item, which cannot be directly used by scooters and must be vulcanized first. This item must have a maximum stack size of 16.</td>
+		</tr>
+		<tr>
+			<td>Screen Handlers</td>
+			<td><code>scooters:scooter</code></td>
+			<td>The logical part of the scooter UI, and handles moving items into and from a scooter.</td>
+		</tr>
+		<tr>
+			<td>Screens</td>
+			<td><i>registered to the scooter screen handler</i></td>
+			<td>The graphical part of the scooter UI, and handles drawing a usable UI on the videogame.</td>
+		</tr>
+		<tr>
+			<td>Block tags</td>
+			<td><code>scooters:abrasive</code></td>
+			<td>This block tag controls which blocks decrease the durability of tires more quickly. The blocks themselves in the tag are controlled with a data pack, the JSON file located at <code>data/scooters/tags/blocks/abrasive.json</code>.</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Packets</td>
+			<td><code>scooters:esctup</code><br><small>Client to server</small></td>
+			<td>This packet is used to inform if you're using the throttle on an electric scooter or not. The name means <u>E</u>lectric <u>Sc</u>ooter <u>T</u>hrottle <u>Up</u>date.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:invchange</code><br><small>Server to client</small></td>
+			<td>This packet is used to inform clients about the inventory of a scooter. Effects of this packet are synchronized visuals and handling characteristics. The name means <u>Inv</u>entory <u>Change</u>d.</td>
+		</tr>
+		<tr>
+			<td rowspan="4">Sound Events</td>
+			<td><code>scooters:entity.roll</code></td>
+			<td>The sound a scooter makes when rolling around.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:entity.tire_pop</code></td>
+			<td>The bang or pop a tire makes when its durability is depleted entirely.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:charger.connect</code></td>
+			<td>The sound of connecting an e-scooter to a charging station.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:charger.disconnect</code></td>
+			<td>The sound of disconnecting an e-scooter from a charging station.</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Recipe Serializers</td>
+			<td><code>scooters:kick_scooter_craft</code></td>
+			<td>This recipe serializer is responsible for the kick scooter recipe where the NBT data of the tires is preserved when crafting a scooter. The crafting recipe is <i>not</i> defined in any JSON files, but the JSON files are required for the recipe to actually work.</td>
+		</tr>
+		<tr>
+			<td><code>scooters:electric_scooter_craft</code></td>
+			<td>This recipe serializer is responsible for the scooter electrification recipe where the NBT data of the scooter is preserveed when electrifying it. The crafting recipe is <i>not</i> defined in any JSON files, but the JSON files are required for the recipe to actually work.</td>
+		</tr>
+		<tr>
+			<td>Entity Model Layers</td>
+			<td><code>scooters:scooter</code></td>
+			<td>Required by rendering, represents the 3D model of a scooter.</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Entity Renderers</td>
+			<td><i>registered to the logical kick scooter entity</i></td>
+			<td>Required by rendering to give instructions on how to draw a scooter on the videogame.</td>
+		</tr>
+		<tr>
+			<td><i>registered to the logical electric scooter entity</i></td>
+			<td>Required by rendering to give instructions on how to draw a scooter on the videogame. This is the same entity renderer as before.</td>
+		</tr>
+	</table>
+</details>
