@@ -16,7 +16,12 @@ use_math: true
 			<li><a href="#1.3">Quilt and Fabric support</a></li>
 		</ol>
 	</li>
-	<li><a href="#2">Scooters</a></li>
+	<li><a href="#2">Scooters</a>
+		<ol>
+			<li><a href="2.1">The Kick Scooter</a></li>
+			<li><a href="2.2">The Electric Scooter</a></li>
+		</ol>
+	</li>
 	<li><a href="#3">Tires</a></li>
 	<li><a href="#4">Charging Station</a></li>
 	<li><a href="#5">Technical Reference</a>
@@ -30,21 +35,36 @@ use_math: true
 <h2 id="1">Initial Setup</h2>
 
 <h3 id="1.1">Requirements</h3>
+<p><b><i>STUB:</i></b> Fabric Loader or compatible, Fabric API or compatible.</p>
 
 <h3 id="1.2">Use on Dedicated Servers</h3>
 <p>Scooters Mod is required on both sides of the server-client paradigm. Server-side provides items and entities players can interact with and client-side provides the physics.</p>
 <p><mark>Note that Scooters Mod does not provide a warning to players connecting without it installed on the client.</mark> Instead, the underlying copy of Minecraft will complain about missing registry entries. Interoperability with mods that register the same identifiers or resource locations is <i>not</i> guaranteed. For a table of what's registered, see <a href="#3.1">Registry Entries</a>.</p>
 
 <h3 id="1.3">Quilt and Fabric support</h3>
+<p><b><i>STUB:</i></b> Scooters Mod was started as a Fabric mod, before public betas of Quilt existed. 1.0.x will be the only releases targeting Fabric Loader. In the future, Scooters will be retooled for Quilt.</p>
 
 <h2 id="2">Scooters</h2>
+<p><b><i>STUB:</i></b> see the <a href="/mods/scooters/quick_start">Quick Start Guide</a></p>
+
+<h3 id="2.1">The Kick Scooter</h3>
+<p><b><i>STUB:</i></b> see the <a href="/mods/scooters/quick_start">Quick Start Guide</a></p>
+
+<h3 id="2.2">The Electric Scooter</h3>
+<p><b><i>STUB:</i></b> see the <a href="/mods/scooters/quick_start">Quick Start Guide</a></p>
+
+<h2 id="3">Tires</h2>
+<p><b><i>STUB:</i></b> see the <a href="/mods/scooters/quick_start">Quick Start Guide</a></p>
+
+<h2 id="4">Charging Station</h2>
+<p><b><i>STUB:</i></b> see the <a href="/mods/scooters/quick_start">Quick Start Guide</a></p>
 
 <h2 id="5">Technical Reference</h2>
-
 <p>This section uses Yarn names, and names based from it.</p>
 
 <h3 id="5.1">Riding Physics</h3>
-<mark class="note">Note: this set of formulas are only for when the player is riding a scooter.</mark>
+<mark class="note">Note: this section uses MathML. Please use a web browser with support for MathML.</mark>
+<p>These are the physics for a player riding a scooter.</p>
 <h4>Rotation</h4>
 <p>First we need to calculate how much we spin in a frame:</p>
 <math class="block center">

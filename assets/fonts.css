@@ -3,54 +3,64 @@
 	font-family: "Gravity";
 	font-weight: normal;
 	src: url("/assets/fonts/gravity/r.otf");
+	font-display: fallback;
 }
 @font-face {
 	font-family: "Gravity";
 	font-weight: normal;
 	font-style: italic;
 	src: url("/assets/fonts/gravity/ri.otf");
+	font-display: fallback;
 }
 @font-face {
 	font-family: "Gravity";
 	font-weight: bold;
 	src: url("/assets/fonts/gravity/b.otf");
+	font-display: fallback;
 }
 @font-face {
 	font-family: "Gravity";
 	font-weight: bold;
 	font-style: italic;
 	src: url("/assets/fonts/gravity/bi.otf");
+	font-display: fallback;
 }
 /* Libertine */
 @font-face {
 	font-family: "Linux Libertine";
 	font-weight: normal;
 	src: url("/assets/fonts/libertine/r.ttf");
+	font-display: fallback;
 }
 @font-face {
 	font-family: "Linux Libertine";
 	font-weight: normal;
 	font-style: italic;
 	src: url("/assets/fonts/libertine/ri.ttf");
+	font-display: fallback;
 }
 @font-face {
 	font-family: "Linux Libertine";
 	font-weight: bold;
 	src: url("/assets/fonts/libertine/b.ttf");
+	font-display: fallback;
 }
 @font-face {
 	font-family: "Linux Libertine";
 	font-weight: bold;
 	font-style: italic;
 	src: url("/assets/fonts/libertine/bi.ttf");
+	font-display: fallback;
 }
 /* Monospace font */
 @font-face {
 	font-family: "Inconsolata";
 	src: url("/assets/fonts/inconsolata.ttf");
+	font-display: fallback;
 }
 /* Cursive */
 @font-face {
 	font-family: "Chilanka";
 	src: url("/assets/fonts/chilanka.ttf");
+	font-display: fallback;
 }
