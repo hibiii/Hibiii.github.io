@@ -73,7 +73,7 @@ h4 {
 	margin: 8px;
 }
 
-img { max-width: 50%; }
+img:not(table img) { max-width: 50%; }
 img.pad { margin: 20px; }
 img.pad:not(.big):not(.small) { max-width: calc(50% - 40px); }
 img.big { max-height: 100%; max-width: 100%; }
