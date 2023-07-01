@@ -1,0 +1,149 @@
+---
+---
+:root {
+	--c-a: #a0f;
+	--c-fg: #333;
+	--c-fg-em: #000;
+	--c-bg: #fff;
+	--c-code: #eee;
+	--c-mark: #aa00ff60;
+	--fn-sans: "Tuffy", sans-serif;
+	--fn-monospace: "Iosevka Slab", monospace; }
+
+@media screen {
+	body {
+		background-color: var(--c-bg);
+		color: var(--c-fg); } }
+
+body {
+	font-family: var(--fn-sans);
+	font-size: 1.1em;
+	margin: auto;
+	padding-bottom: 3em;
+	overflow-y: scroll;
+	width: clamp(320px, 80%, 1200px);
+	text-align: justify;
+	text-rendering: optimizelegibility; }
+
+blockquote {
+	border-left: 1pt solid var(--c-fg);
+	background-color: var(--c-code);
+	margin: 1em 1em;
+	padding: 3pt 13pt; }
+
+code:not(pre > code) {
+	margin: 1px 6px; }
+
+code, pre {
+	font-family: var(--fn-monospace);
+	font-size: 0.9em;
+	background-color: var(--c-code); }
+
+pre {
+	display: block;
+	margin: 0.25em 1em;
+	padding: 0.4em; }
+
+mark code, mark pre {
+	background-color: unset; }
+
+
+
+em:not(a em), strong:not(a strong), i:not(a i), b:not(a b) {
+	color: var(--c-fg-em); }
+
+a, details summary {
+	color: var(--c-a);
+	text-decoration: none;
+	font-weight: bold; }
+
+h1, h2 {
+	margin-bottom: 0; }
+
+h2[o]:before, h3[o]:before {
+	content: attr(o) ". "; }
+
+header.mod {
+	h1 {
+		padding-top: 8px; }
+	img {
+		margin: 8px;
+		float: left; } }
+
+img:not(table img) { max-width: 50%; }
+img.big { max-height: 100%; max-width: 100%; }
+img.small { max-width: 25%; }
+
+.center {
+	text-align: center; }
+
+mark {
+	background-color: var(--c-mark); }
+
+mark.note {
+	display: block;
+	padding: 10px;
+	a {
+		color: inherit;
+		text-decoration: underline;
+		font-weight: bold; } }
+
+footer, div.footnotes {
+	border-top: 1px solid var(--c-fg);
+	padding: 0.2em;
+	clear: both; }
+
+.cl { clear: both; }
+.fr { float: right; }
+.fl { float: left; }
+
+table {
+	border-collapse: collapse;
+	margin: 0;
+	caption-side: top;
+
+	caption {
+		font-weight: bold;
+		padding: 0.4em; }
+
+	thead {
+		border-bottom: 1pt solid var(--c-fg); }
+
+	tbody tr:nth-child(even), thead tr:nth-child(odd), tfoot tr:nth-child(odd) {
+		background-color: var(--c-code); }
+	
+	td, th {
+		padding: 0.4em; } }
+
+details {
+	border-bottom: 1pt solid var(--c-fg);
+	summary {
+		padding: 3pt;
+		background-color: var(--c-code); } }
+		
+details[open] {
+	padding-bottom: 3pt;
+	summary {
+		margin-bottom: 2pt;
+		border-bottom: 1pt solid var(--c-fg); } }
+
+hr {
+	border: none; 
+	border-top: 1px solid var(--c-fg); }
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--a-color: hotpink;
+		--fg-color: #e6e6e6;
+		--bg-color: #222;
+		--mark-color: gold;
+		--codeb-color: #2b2b2b;
+		--codeb-comment: hotpink;
+	}
+	img.invertible {
+		filter: unquote("invert()");
+	}
+	img.sdw {
+		box-shadow: none;
+	}
+}

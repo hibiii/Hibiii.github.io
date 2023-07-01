@@ -1,66 +1,33 @@
-/* Gravity */
+/* Tuffy */
 @font-face {
-	font-family: "Gravity";
+	font-family: "Tuffy";
 	font-weight: normal;
-	src: url("/assets/fonts/gravity/r.otf");
+	src: url("/assets/fonts/tuffy/r.ttf");
 	font-display: fallback;
 }
 @font-face {
-	font-family: "Gravity";
-	font-weight: normal;
-	font-style: italic;
-	src: url("/assets/fonts/gravity/ri.otf");
-	font-display: fallback;
-}
-@font-face {
-	font-family: "Gravity";
-	font-weight: bold;
-	src: url("/assets/fonts/gravity/b.otf");
-	font-display: fallback;
-}
-@font-face {
-	font-family: "Gravity";
-	font-weight: bold;
-	font-style: italic;
-	src: url("/assets/fonts/gravity/bi.otf");
-	font-display: fallback;
-}
-/* Libertine */
-@font-face {
-	font-family: "Linux Libertine";
-	font-weight: normal;
-	src: url("/assets/fonts/libertine/r.ttf");
-	font-display: fallback;
-}
-@font-face {
-	font-family: "Linux Libertine";
+	font-family: "Tuffy";
 	font-weight: normal;
 	font-style: italic;
-	src: url("/assets/fonts/libertine/ri.ttf");
+	src: url("/assets/fonts/tuffy/ri.ttf");
 	font-display: fallback;
 }
 @font-face {
-	font-family: "Linux Libertine";
+	font-family: "Tuffy";
 	font-weight: bold;
-	src: url("/assets/fonts/libertine/b.ttf");
+	src: url("/assets/fonts/tuffy/b.ttf");
 	font-display: fallback;
 }
 @font-face {
-	font-family: "Linux Libertine";
+	font-family: "Tuffy";
 	font-weight: bold;
 	font-style: italic;
-	src: url("/assets/fonts/libertine/bi.ttf");
+	src: url("/assets/fonts/Tuffy/bi.ttf");
 	font-display: fallback;
 }
-/* Monospace font */
 @font-face {
-	font-family: "Inconsolata";
-	src: url("/assets/fonts/inconsolata.ttf");
-	font-display: fallback;
-}
-/* Cursive */
-@font-face {
-	font-family: "Chilanka";
-	src: url("/assets/fonts/chilanka.ttf");
+	font-family: "Tuffy Script";
+	font-weight: normal;
+	src: url("/assets/fonts/tuffy/ss-r.ttf");
 	font-display: fallback;
 }

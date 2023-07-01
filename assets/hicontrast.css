@@ -1,0 +1,44 @@
+@media (prefers-contrast: more) {
+	:root {
+		--fn-sans: "Atkinson Hyperlegible", hyperlegible, serif; }
+
+	a {
+		text-decoration: underline; }
+
+	details {
+		border: 2pt solid var(--c-fg);
+		border-collapse: collapse;	}
+
+		details summary {
+			padding: 3pt;
+			border-bottom: 2pt solid var(--c-fg); }
+		details[open] {
+			border-width: 2pt; }
+
+	table {
+		border: 2pt solid var(--c-fg); }
+		td, th {
+			border: 2pt solid var(--c-fg); }
+		thead {
+			border-bottom: 3pt solid var(--c-fg); }
+		tfoot {
+			border-top: 3pt solid var(--c-fg); }
+
+	hr, footer, div.footnotes {
+		border-top: 2pt solid var(--c-fg); }
+
+	@media (prefers-color-scheme: light) {
+		:root {
+			--c-a: #70b;
+			--c-fg: black;
+			--c-fg-em: black;
+			--c-bg: white;
+			--c-code: #eeb7ee; } }
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--c-a: #d278ff;
+			--c-fg: white;
+			--c-fg-em: white;
+			--c-bg: black;
+			--c-code: #305; } }
+}

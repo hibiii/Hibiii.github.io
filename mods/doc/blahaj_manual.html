@@ -6,57 +6,78 @@ icon: /assets/icon/blahaj.png
 color: "#548b9d"
 ---
 <ol class="cl">
-	<li><a href="#1">Intent</a></li>
-	<li><a href="#2">How to use</a></li>
-	<li><a href="#3">Version support</a></li>
-	<li><a href="#4">Items</a></li>
-	<li><a href="#5">Technical reference</a>
+	<li><a href="#intent">Intent</a></li>
+	<li><a href="#how-to-use">How to use</a></li>
+	<li><a href="#version-support">Version support</a></li>
+	<li><a href="#items">Items</a>
 		<ol>
-			<li><a href="#5.1">Cuddly item</a></li>
-			<li><a href="#5.2">Loot table additions</a></li>
-			<li><a href="#5.3">Villager trade offer additions</a></li>
-			<li><a href="#5.4">Mixins</a></li>
+			<li><a href="#blahaj">Soft Toy Shark</a></li>
+			<li><a href="#klapparhaj">Gray Toy Shark</a></li>
+			<li><a href="#blavingad">Soft Toy Blue Whale</a></li>
+			<li><a href="#bread-pillow">Bread Pillow</a></li>
 		</ol>
 	</li>
-	<li><a href="#6">Known issues</a></li>
+	<li><a href="#technical-reference">Technical reference</a>
+		<ol>
+			<li><a href="#CuddlyItem">Cuddly item</a></li>
+			<li><a href="#ItemContainerCuddlyItem">Item Container Cuddly item</a></li>
+			<li><a href="#loot-tables">Loot table additions</a></li>
+			<li><a href="#villager-trade-offers">Villager trade offer additions</a></li>
+			<li><a href="#mixins">Mixins</a></li>
+		</ol>
+	</li>
+	<li><a href="#known-issues">Known issues</a></li>
 </ol>
 
-<h2 id="1">Intent</h2>
+<h2 id="intent" o="1">Intent</h2>
 <p>The Blåhaj Mod was designed to bring the comfort of cuddling your favorite plushie into Minecraft. If there is any plushie you'd like to see added, let me know!</p>
 
-<h2 id="2">How to use</h2>
+<h2 id="how-to-use" o="2">How to use</h2>
 <p>The requirements for Blåhaj Mod are Quilt Loader, and Fabric API, and is required on <i>both</i> the server and client. If you only play in singleplayer, it only needs to be installed once. If you are a server operator, you need to install it on the server, and tell your players to install it on their games as well.</p>
 <p>Fabric API is embedded in Quilt Standard Libraries, and is aptly branded "Quilted Fabric API". If you already have QSL installed (which Quilt mods are likely to themselves require), then you don't need to install Fabric API.</p>
 
-<h2 id="3">Version support</h2>
+<h2 id="version-support" o="3">Version support</h2>
 <p>The Blåhaj Mod always targets the latest version of the video game. If there is demand for a specific version, it shall be supported until it wains (very little downloads after a prolonged amount of time).</p>
 <p>Forge will not be supported due to not only profound loader differences, but also insecurity as a platform. Unless you are willing to take on the burden of continually developing and maintaining for it, do not make a pull request adding support for Forge.</p>
+<p>The 1.19.3 and the 1.18.x ports of Blåhaj Mod are being considered to have support ended due to low download numbers. Versions unsupported will still have precompiled binaries available, but the version dependent code will be removed from the Blåhaj repository. This code will always be available due to the fact that Blåhaj Mod uses Git for version control, albeit not on the latest commit.</p>
 
-<h2 id="4">Items</h2>
+<h2 id="items" o="4">Items</h2>
 <p>All items added by this mod, whenever you craft, trade for, or rename, get your username attached to them. The player will also do a hugging pose when it is in either hand, and mining blocks directly with these items on the main hand will make mining 4 times slower because they are soft.</p>
 
-<h3 id="4.1">Soft Toy Shark</h3>
+<h3 id="blahaj" o="4.1">Soft Toy Shark</h3>
 <p>Also known as the Blåhaj, this is a soft, shark-shaped plushie that the player can hold on their hands. It has no practical use and is purely cosmetic. Its ID is <code>blahaj:blue_shark</code>. Blåhaj can obtained only by crafting, using a vaguely shark-shaped recipe:</p>
 <center>
 	<img src="https://raw.githubusercontent.com/Hibiii/Blahaj/main/.pretty_readme/recipe_blue_shark.png" alt="Crafting recipe for a Soft Toy Shark">
 </center>
 
-<h3 id="4.2">Gray Toy Shark</h3>
+<h3 id="klapparhaj" o="4.2">Gray Toy Shark</h3>
 <p>Also known as the Klappar Haj, this is a gray version of the Blåhaj, and represents a much older version of Blåhaj, previously sold at IKEA. It is identical in every other way. Its ID is <code>blahaj:gray_shark</code>. It can obtained only by trading with sheperd villagers at master level, or in chests of village houses in plains, taiga, and snow biomes, or in stronghold chests.</p>
 <center>
 	<img src="https://raw.githubusercontent.com/Hibiii/Blahaj/main/.pretty_readme/trade_gray_shark.png" alt="Trade offer for a Gray Toy Shark">
 </center>
 
-<h3 id="4.3">Bread Pillow</h3>
+<h3 id="blavingad" o="4.3">Soft Toy Blue Whale</h3>
+<p>Also known as the Blåvingad, this is a soft, blue whale shaped plushie with a zippered pocket for its mouth, sold at IKEA. Its ID is <code>blahaj:blue_whale</code>. Blåhaj can be obtained by crafting, using a vaguely whale-shaped recipe:</p>
+<center>
+	<img src="https://raw.githubusercontent.com/Hibiii/Blahaj/main/.pretty_readme/recipe_blue_whale.png" alt="Crafting recipe for a Soft Toy Shark">
+</center>
+
+<p>Blåvingad in-game have the ability to hold a stack of items. To store a stack in a Blåvingad, right click on the stack with the whale on the cursor, while in the inventory. The reverse also works, right clicking on the whale with a stack on the cursor. To remove an item stack from a Blåvingad, right click on an empty slot with the whale on the cursor.</p>
+
+<p>Unlike bundles, Blåvingad can only have one stack of one item. For example, you cannot store 32 andesite and 32 granite in the same whale.</p>
+
+<p>Note that, because there are no facilities in the vanilla code to merge two stacks with optional remainder, the item storage mechanic does not work with partial stacks. If the Blåvingad has a stack, it can only be taken out to an empty slot only; additional items cannot be placed in the plush.</p>
+
+<h3 id="bread-pillow" o="4.3">Bread Pillow</h3>
 <p>This is a long, baguette shaped item that is also purely cosmetic. It represents various bread-themed pillows sold at various stores. Its ID is <code>blahaj:bread</code>. It can be obtained by crafting, using a vaguely bread-shaped recipe of orange wool:</p>
 <center>
 	<img src="https://raw.githubusercontent.com/Hibiii/Blahaj/main/.pretty_readme/recipe_bread.png" alt="Crafting recipe for a Bread Pillow">
 </center>
 
-<h2 id="5">Technical Reference</h2>
+<h2 id="technical-reference" o="5">Technical Reference</h2>
 <p>This section includes more implementational details. Any vanilla field and method names will be using <a href="https://github.com/QuiltMC/quilt-mappings">Quilt mapping names</a> as they're unencumbered.</p>
 
-<h3 id="5.1">Cuddly item</h3>
+<h3 id="CuddlyItem" o="5.1">Cuddly item</h3>
 <p>This is the class common to all items defined by this mod. It defines the following:</p>
 <ul>
 	<li>Receiving and storing a "subtitle" when it is initialized in the code (constructor declaration);</li>
@@ -71,11 +92,11 @@ color: "#548b9d"
 <p>Since there's no ownership system in Minecraft, it uses the same trick as written books do, by storing the username in NBT and displaying in the tooltip. Items that have been crafted or renamed will have the username of the player that crafted or renamed it had at the time of doing so. There is no way to remove a displayed name from an item.</p>
 <p>Knowing this, under normal survival play, only three states are possible for any cuddly item:</p>
 <table>
-	<tr>
-		<th></th>
+	<thead>
+		<th>NBT</th>
 		<th>Unnamed</th>
 		<th>Renamed</th>
-	</tr>
+	</thead>
 	<tr>
 		<th>With owner tag</th>
 		<td>Yes</td>
@@ -88,7 +109,15 @@ color: "#548b9d"
 	</tr>
 </table>
 
-<h3 id="5.2">Loot table additions</h3>
+<h3 id="ItemContainerCuddlyItem"o="5.2">Item Container Cuddly Item</h3>
+<p>This is the class behind the blue whale item and is a subclass of Cuddly Item. It is responsible for the following functionality:</p>
+<ul>
+	<li>The NBT key for the item stack being contained, <code>ItemContainerCuddlyItem.STORED_ITEM_KEY = "Item"</code>;</li>
+	<li>Loading and unloading item stacks into the NBT data (<code>onClicked</code> and <code>onClikedOnOther</code> overrides);</li>
+	<li>Appending a tooltip to an item stack if it has a contained item (<code>appendTooltip</code> override).</li>
+</ul>
+
+<h3 id="loot-tables" o="5.3">Loot table additions</h3>
 <p>For better integration with the vanilla world generation, the Blåhaj mod adds an entry to a few chests in that are generated in the world.</p>
 <ul>
 	<li><b>Stronghold crossing</b> and <b>Stronghold corridor chests</b>: 1 Klappar Haj is placed in the chest with a 5/100 chance per chest;</li>
@@ -96,7 +125,7 @@ color: "#548b9d"
 	<li><b>Taiga</b> and <b>Snowy village house chests</b>: 1 Klappar Haj is placed in the chest with a 5/54 chance per chest;</li>
 </ul>
 
-<h3 id="5.3">Villager trade offer additions</h3>
+<h3 id="villager-trade-offers" o="5.4">Villager trade offer additions</h3>
 <p>In order to make Klappar Hajs not a finite resource, it's also available as a villager trade.</p>
 <ul>
 	<li><b>Level</b>: Master</li>
@@ -107,7 +136,7 @@ color: "#548b9d"
 	<li><b>Villager XP</b>: 30 xp</li>
 </ul>
 
-<h3 id="5.4">Mixins</h3>
+<h3 id="mixins" o="5.5">Mixins</h3>
 <p>To complete the functionality of the mod, as well as preventing bugs, mixins were used. The functionality of each is explained below, in a logical order:</p>
 <ul>
 	<li>
@@ -128,5 +157,5 @@ color: "#548b9d"
 	</li>
 </ul>
 
-<h3 id="6">Known issues</h3>
+<h3 id="known-issues" o="6">Known issues</h3>
 <p><a href="https://github.com/Hibiii/Blahaj/issues/9">GH-9: Bread pillow recipe is too generic</a>: the shape of the recipe is so vague that there might be conflicts with other mods, it is the same shape as stone walls and wooden trapdoors. The solution for this will be adding a bread without consuming it, once an easy enough solution for recipe remainders becomes available.</p>

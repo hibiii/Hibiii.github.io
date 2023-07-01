@@ -3,22 +3,24 @@ defaults:
     scope:
       path: ""
     values:
-      layout: "page"
+      layout: "basic"
       section: "hibi"
       icon: "/assets/art/kbwrior.png"
-      color: "#808080"
   -
     scope:
       path: "mods"
     values:
       layout: "mod"
       section: "hibi's mods"
-      color: "#FF00FF"
   -
     scope:
       path: "mods/doc"
     values:
-      layout: "mod_doc"
+      layout: "basic"
       description: "User's Manual and Technical Reference"
       section: "hibi's mods"
-      color: "#FF00FF"
+kramdown:
+  parse_block_html: true
+  header_offset: 1
+  syntax_highlighter_opts:
+    disable: true
