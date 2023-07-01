@@ -8,7 +8,7 @@
 	--c-code: #eee;
 	--c-mark: #aa00ff60;
 	--fn-sans: "Tuffy", sans-serif;
-	--fn-monospace: "Iosevka Slab", monospace; }
+	--fn-monospace: "Iosevka", monospace; }
 
 @media screen {
 	body {
@@ -73,11 +73,14 @@ header.mod {
 img:not(table img) { max-width: 50%; }
 img.big { max-height: 100%; max-width: 100%; }
 img.small { max-width: 25%; }
+img.pad { margin: 12pt; }
+img.pad:not(table img) { max-width: calc(50% - 24pt); }
 
 .center {
 	text-align: center; }
 
 mark {
+	color: var(--c-fg-em);
 	background-color: var(--c-mark); }
 
 mark.note {
@@ -133,17 +136,10 @@ hr {
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--a-color: hotpink;
-		--fg-color: #e6e6e6;
-		--bg-color: #222;
-		--mark-color: gold;
-		--codeb-color: #2b2b2b;
-		--codeb-comment: hotpink;
-	}
-	img.invertible {
-		filter: unquote("invert()");
-	}
-	img.sdw {
-		box-shadow: none;
+		--c-a: #cf70ff;
+		--c-fg: #ccc;
+		--c-fg-em: #fff;
+		--c-bg: #111;
+		--c-code: #222;
 	}
 }

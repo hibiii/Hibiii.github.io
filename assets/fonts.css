@@ -31,3 +31,9 @@
 	src: url("/assets/fonts/tuffy/ss-r.ttf");
 	font-display: fallback;
 }
+@font-face {
+	font-family: "Iosevka";
+	src:
+		url('https://cdn.jsdelivr.net/gh/kaushalmodi/iosevka-mirror@v1.14.1/woff2/iosevka-ss08-regular.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/kaushalmodi/iosevka-mirror@v1.14.1/woff/iosevka-ss08-regular.woff') format('woff')
+}
