@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% include head2.html %}
+<nav><p><a href="/blog/">all posts.</a> :: hibi's blog</p></nav>
+<header>
+<h1>{{ page.title }}</h1>
+<span>{{ page.date | date_to_string }}</span>
+</header>
+{{ content }}
+<footer class="blog">
+    <p>{% unless page.tags == empty%}
+        tags: {% for tag in page.tags%}
+            {{tag}}{%unless forloop.last%},{%endunless%}
+        {%endfor%} ::
+        {%endunless%}
+        {{ page.date | date_to_string }} :: hibi's blog :: <a href="/blog/">all posts.</a></p>
+</footer>

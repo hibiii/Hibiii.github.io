@@ -12,7 +12,7 @@ description: My ramblings about Minecraft
   - [Observations][observations] - Things I've noticed over the years while
     playing and messing about with Minecraft.
 
-![Drawing of Hibi riding a minecart](/assets/art/minecart.png)
+![Drawing of Hibi riding a minecart](/assets/art/minecart.png){: .invertible}
 
 [identity-of-the-end]: /minecraft/identity-of-the-end
 [nether-only]: /minecraft/nether-only

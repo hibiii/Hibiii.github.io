@@ -19,6 +19,17 @@ defaults:
       layout: "basic"
       description: "User's Manual and Technical Reference"
       section: "hibi's mods"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      section: "hibi's blog"
+collections:
+  posts:
+    relative_directory: "blog/"
+    permalink: "blog/post/:title"
 kramdown:
   parse_block_html: true
   header_offset: 1
