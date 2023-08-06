@@ -123,3 +123,5 @@ this post in time.
 
 [bc23]: https://blanketcon.modfest.net/
 [frakturia]: https://github.com/hibiii/frakturia
+
+<mark class="note">NOT AN OFFICIAL MINECRAFT BLOG POST. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT</mark>

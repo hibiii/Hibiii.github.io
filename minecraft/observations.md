@@ -26,3 +26,5 @@ fly or jump away without taking damage.
 
 In-game GUIs (from entities, blocks, etc), have a default size of 176 pixels
 wide by 166 high, before scaling.
+
+<mark class="note">NOT AN OFFICIAL MINECRAFT BLOG POST. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT</mark>

@@ -17,3 +17,5 @@ description: My ramblings about Minecraft
 [identity-of-the-end]: /minecraft/identity-of-the-end
 [nether-only]: /minecraft/nether-only
 [observations]: /minecraft/observations
+
+<mark class="note">NOT AN OFFICIAL MINECRAFT BLOG POST. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT</mark>
