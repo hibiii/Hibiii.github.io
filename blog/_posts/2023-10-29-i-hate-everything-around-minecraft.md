@@ -1,6 +1,7 @@
 ---
 title: I hate everything around Minecraft.
 tags: [minecraft]
+draft: true
 ---
 
 Forget about Blåhaj, we are cutting our losses and we are pulling out.
