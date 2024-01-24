@@ -3,9 +3,6 @@ title: "Blåhaj Mod: Where I'm Headed With It"
 tags: [minecraft, modding, blåhaj mod]
 ---
 
-Blåhaj Mod: Where I'm Headed With It
-
-
 I feel my absence has been long enough that it warrants an explainer. Why have
 I been gone for so long? What am I going to do with Blåhaj Mod?
 
