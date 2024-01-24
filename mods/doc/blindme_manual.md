@@ -53,17 +53,17 @@ The settings screen provides three buttons:
 
 The settings are saved once the player presses the "Done" button.
 
-# Gameplay Changes
+# Changes to Vanilla Gameplay
 
 Other than the obvious addition of the enforcement of the Blindness or Darkness effect, BlindMe also includes a change to the underlying vanilla gameplay.
 
-## Players can now sprint if they have the Blindess effect
+## Players can now sprint if they have the Blindness effect
 
 Mojang's design and implementation of the Blindness effect includes the side-effect of not being able to sprint, as demonstrated many tickets opened on their Jira instance about specifically that and being closed as "working as intended".
 
 This change is done because swimming is activated by sprinting underwater, and it has become instrumental in underwater player movement post 1.13. Without it, the player becomes slow to move in water and thus extremely vulnerable with reduced sight.
 
-Implementation detail: the check for whether or not players can sprint is done for any instances of the Blindness effect. BlindMe's solution lies about the player having the Blindness effect and always claim the player doesn't have it. The consequence of this is that, if the server forces the player to have the Blindness, the player, by mere technnicality, will be cheating as they will still be able to sprint. The vanilla server does not enforce the inability to sprint.
+Implementation detail: the check for whether or not players can sprint is done for any instances of the Blindness effect. BlindMe's solution lies about the player having the Blindness effect and always claim the player doesn't have it. The consequence of this is that, if the server forces the player to have the Blindness, the player, by mere technicality, will be cheating as they will still be able to sprint. The vanilla server does not enforce the inability to sprint.
 
 # Additional Notes
 

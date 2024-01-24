@@ -18,11 +18,11 @@ What's a safety system?
 -----------------------
 
 A safety system is basically a system that prevents accidents. It can be as
-simple as a grabber on the track connected to a signal to complex IT systems,
+simple as a grabber on the track connected to a signal, to complex IT systems
 with every train being aware of every other train on the track, track geometry,
 junctions, etc. They are network wide systems and wouldn't make sense placing
-them on a single train on a single line, it would be green from terminal to
-terminal.
+them on a single train on a single line, they would be green from terminal to
+terminal if that were the case.
 
 Safety systems can also be designed without other trains in mind, such as
 making sure the train respects the speed limit, or the train doesn't go runaway
@@ -42,7 +42,8 @@ versions of itself and OpenBVE, it doesn't support animated 3D objects, or
 animated textures, no moving trains, no 3D cabs, no model for the player's
 train, manual door controls... and definitely doesn't support more advanced
 development features, such as route file inclusion, preprocessor conditionals,
-scripted markers, render-to-texture (not seen anywhere), debug screens, etc.
+scripted markers, render-to-texture (not seen anywhere), debug screens, line
+switching, etc.
 
 If a scenario developer wants their scenario to have more advanced features,
 they'll have to use clever trickery (like block occlusion, signal state
