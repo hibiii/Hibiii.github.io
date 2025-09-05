@@ -35,3 +35,5 @@ kramdown:
   header_offset: 1
   syntax_highlighter_opts:
     disable: true
+plugins:
+  - jekyll-feed
