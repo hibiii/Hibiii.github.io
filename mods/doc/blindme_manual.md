@@ -6,7 +6,7 @@ icon: /assets/icon/blindme.png
 color: "#000000"
 ---
 
-This manual is up-to-date with version 1.1 of BlindMe.
+This manual is up-to-date with version 1.2 of BlindMe.
 
 {% include toc.md %}
 
@@ -34,6 +34,8 @@ BlindMe also has the capability to automatically remove effects when the player 
 By default, Creative Mode does not grant a bypass for the effects mostly because vision impairments can significantly affect building style, while Spectator Mode does by default, mainly so server administrators can quickly spectate players without vision impairments.
 Additionally, these specific bypasses can be set on a per-world/server basis as well.
 
+If you are connected to a BlindMe-enabled server, you will not be able to change these settings unless you're also a server operator with permission level 2 or higher, depending on server configuration.
+
 ## The `/blindme` Command
 
 The `/blindme` command is an in-game command to quickly change the active effect for the world you are connected to. While not recommended for survival gameplay, it can be of use in creative environments, or in cases where visibility is a must, such as moderating a server.
@@ -48,6 +50,8 @@ You may specify the setting for the world or server you're currently playing in,
  - `default`: use the global setting, set in the settings screen.
 
 When the command is run, the old effect is immediately stopped and the new effect is immediately applied. The change is not temporary, and persists across world loads or joins (but does not carry over to a different world).
+
+The command does not change the effect if you are in a BlindMe-enabled server.
 
 ## The Settings Screen
 
@@ -67,6 +71,8 @@ After a separator, the following settings apply only to the currently joined wor
 - **Disable in Spectator here**: Akin to *Disable in Spectator*, but specific to the current world. When set to default, the Spectator Mode bypass for BlindMe refers to the global setting.
 - **Lock world options**: A button that, after a confirmation prompt, will lock the world settings, and turn this button into *Unlock world options*. Once the world settings are locked, they cannot be changed again unless they are unlocked. Additionally, the *Unlock world settings* button will not be active, and in order to press it, you must hold the shift key as additional confirmation before unlocking.
 
+If you are connected to a BlindMe-enabled server, then you cannot change these options and they will be unavailable for interaction. You may be able to change them only if you are a server operator with permission level 2 or higher, and the server has allowed OPs to change their settings. In this case, the world-specific options will not default to client settings, but to server enforced ones. Additionally, locking options is not supported on server-enforced settings.
+
 The settings are saved once the player presses the "Done" button.
 
 # World-specific settings
@@ -79,11 +85,13 @@ The exceptions for Creative Mode and Spectator Mode can also be set independentl
 
 Additionally, world settings can be locked. Locking a world's settings makes you unable to change any of its settings, either via the settings screen, or the `/blindme` command. Locking exists in order to facilitate upkeep on a challenge for a world, such as a survival world with Blindness enabled. Locked world settings can also be unlocked at the settings screen, if needed.
 
+When playing on a multiplayer server with BlindMe integration, the settings for it are not saved because they are the ones supplied by the server itself, ignoring your already set preferrences. The settings are saved if the player is a server operator and has customized their experience.
+
 # Additional technical notes
 
 BlindMe is designed to have no impact on vanilla gameplay, and tries to undo any gameplay restrictions it, and only it alone, is causing. It does it by doing "deep checks": the primary status effect instance is checked if it's only the mod's managed instance.
 
-In vanilla, sprinting (and by extension swimming) is entirely disabled when the player has Blindness. BlindMe changes this such that the player can sprint if the Blindness applies is only from BlindMe.
+In vanilla, sprinting (and by extension, swimming) is entirely disabled when the player has Blindness. BlindMe changes this such that the player can sprint if the Blindness applied is only from BlindMe.
 Technically: BlindMe makes it so, when checking if the player is elligible to sprint, the game ignores Blindness _if_ the instance of Blindness is the one managed by BlindMe _and_ said instance doesn't shadow any other instances of Blindness.
 
 In vanilla, Darkness has a pulsing effect. It has no gameplay effects but can be disorienting when applied for long periods of time. BlindMe disables the pulsing effect optionally, only if the Darkness is self-inflicted.

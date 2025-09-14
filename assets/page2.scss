@@ -63,6 +63,9 @@ h1, h2 {
 h2[o]:before, h3[o]:before {
 	content: attr(o) ". "; }
 
+h1:not(a h1), h2:not(a h2), h3:not(a h3), h4:not(a h4) {
+	color: var(--c-fg-em); }
+
 header.mod {
 	h1 {
 		padding-top: 8px; }
