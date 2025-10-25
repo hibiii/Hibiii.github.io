@@ -3,6 +3,8 @@ title: Hibi Plays Minecraft
 description: My ramblings about Minecraft
 ---
 
+  - [Aggro in Minecraft][aggro] - An analysis of the enmity systems that hostile mobs use in Minecraft.
+
   - [Nether-Only Survival][nether-only] - An analysis of the unique challenge
     set forth by the 1.16 Nether Update.
 
@@ -17,5 +19,6 @@ description: My ramblings about Minecraft
 [identity-of-the-end]: /minecraft/identity-of-the-end
 [nether-only]: /minecraft/nether-only
 [observations]: /minecraft/observations
+[aggro]: /minecraft/aggro
 
 <mark class="note">NOT AN OFFICIAL MINECRAFT BLOG POST. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT</mark>

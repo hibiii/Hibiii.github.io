@@ -4,6 +4,10 @@ description: The best and most resonating quotes I've come across
 permalink: /quotes
 ---
 
+> For those we have lost. For those we can yet save.
+>
+> — Minfilia Warde (character from Final Fantasy XIV Online: A Realm Reborn), Square Enix, 2015
+
 > Your natural state is Enlightening. Everything else you've ever been told
 > about yourself is a lie. We are trying to wake ourselves up, because we come
 > from Source Energy and we are all one. We have to realize that our brothers
