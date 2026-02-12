@@ -5,6 +5,7 @@ description: null
 permalink: /mods/blindme/server_deprecation
 icon: /assets/icon/blindme.png
 color: "#000000"
+no_description: true
 ---
 
 <mark class="note">This deprecation notice was posted on 12 Feb. 2026.</mark>
