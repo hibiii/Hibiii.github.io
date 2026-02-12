@@ -7,7 +7,9 @@ icon: /assets/icon/blindme.png
 color: "#000000"
 ---
 
-This manual is up-to-date with version 1.2 of BlindMe.
+<mark class="note">Note: server-side enforecement is deprecated as of 12 february 2026. More information is available at <a href="/mods/blindme/server_deprecation">the deprecation notice</a>.</mark>
+
+This manual is up-to-date with version 1.4 of BlindMe.
 
 {% include toc.md %}
 
