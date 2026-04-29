@@ -6,7 +6,7 @@ icon: /assets/icon/blindme.png
 color: "#000000"
 ---
 
-This manual is up-to-date with version 1.4 of BlindMe.
+This manual is up-to-date with version 1.5 of BlindMe.
 
 {% include toc.md %}
 

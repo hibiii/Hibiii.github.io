@@ -9,7 +9,7 @@ color: "#000000"
 
 <mark class="note">Note: server-side enforecement is deprecated as of 12 Feb. 2026. More information is available at <a href="/mods/blindme/server_deprecation">the deprecation notice</a>.</mark>
 
-This manual is up-to-date with version 1.4 of BlindMe.
+This manual is up-to-date with version 1.5 of BlindMe.
 
 {% include toc.md %}
 
